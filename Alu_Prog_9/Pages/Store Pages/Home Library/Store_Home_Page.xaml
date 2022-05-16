@@ -1,0 +1,68 @@
+﻿<Page x:Class="Alu_Prog_9.Pages.Store_Pages.Home_Library.Store_Home_Page"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Alu_Prog_9.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="670" d:DesignWidth="940"
+      Title="Store_Home_Page">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="Store_Home_Frame" Grid.Row="1" Grid.Column="2"/>
+        <TextBlock Text="Магазин"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="White"
+                   FontSize="22"
+                   Margin="20 0 0 0"
+                   FontFamily="/Fonts/#Poppins"/>
+        <StackPanel Grid.Row="1">
+            <RadioButton
+                x:Name="Store_Home_Programs_But"
+                Content="Программы"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                IsChecked="True"
+                Click="Store_Home_Programs_But_Click"/>
+            <RadioButton
+                x:Name="Store_Home_Games_But"
+                Content="Игры"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_Home_Games_But_Click"/>
+            <RadioButton
+                x:Name="Store_Home_Test_But"
+                Content="Тестирование"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Visibility="Hidden"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_Home_Test_But_Click"/>
+            <RadioButton
+                x:Name="Store_Home_Admin_But"
+                Content="Тест"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Visibility="Hidden"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_Home_Admin_But_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

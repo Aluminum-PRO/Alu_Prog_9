@@ -1,0 +1,18 @@
+﻿<Page x:Class="Alu_Prog_9.Pages.Store_Pages.Home_Library.Store_Home_Application_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Alu_Prog_9.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="620" d:DesignWidth="770"
+      Title="Store_Home_Application_Page">
+
+    <Grid HorizontalAlignment="Stretch">
+        <WrapPanel HorizontalAlignment="Left" Margin="3,3,3,3" VerticalAlignment="Top">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <WrapPanel HorizontalAlignment="Stretch" x:Name="Area_for_Applicatoin_Box"/>
+            </ScrollViewer>
+        </WrapPanel>
+    </Grid>
+</Page>

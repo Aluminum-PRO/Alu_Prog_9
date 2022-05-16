@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Alu_Prog_9.User_Control.Application_Soft_Box_UC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Alu_Prog_9.User_Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="240">
+    <Grid Margin="10">
+        <Border Background="#272529" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
+            </Border.Effect>
+            <StackPanel Orientation="Vertical">
+                <Border Background="#272529" CornerRadius="15" Margin="8 8 8 4" Padding="6">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
+                    </Border.Effect>
+                    <Button x:Name="Open_Application_Box_But" Click="Open_Application_Box_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="200" Width="190">
+                        <Image x:Name="Application_Image" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="158" Height="170"/>
+                    </Button>
+                </Border>
+                <TextBlock x:Name="Name_Application" Text="Название" FontSize="14" Foreground="White" Width="210" MaxHeight="37" Height="auto"  Margin="2 0 2 2" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <Border x:Name="Update_Border" VerticalAlignment="Bottom" >
+                    <Border.Effect>
+                        <DropShadowEffect x:Name="Update_Effect" BlurRadius="20" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
+                    </Border.Effect>
+                    <TextBlock x:Name="Size_Application" Text="0 МБ" FontSize="14" Foreground="White" Width="180" Height="auto" Margin="5 0" TextAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
