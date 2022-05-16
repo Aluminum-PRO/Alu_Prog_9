@@ -96,8 +96,8 @@ namespace Alu_Prog_9.User_Control
 
         private async void Uploading_Application_Data()
         {
-            await Task.Run(() =>
-            {
+            //await Task.Run(() =>
+            //{
                 My_Con = new MySql_Connector();
 
                 Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
@@ -209,7 +209,7 @@ namespace Alu_Prog_9.User_Control
                     }
                 }
                 Application_Image.Source = image;
-            });
+            //});
         }
 
         private void Open_Application_Box_But_Click(object sender, RoutedEventArgs e)

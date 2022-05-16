@@ -34,8 +34,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
 
         private async void Spawn_Applications(string Type)
         {
-            //await Task.Run(() =>
-            //{
+            await Task.Run(() =>
+            {
                 My_Con = new MySql_Connector();
 
                 Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
@@ -126,24 +126,24 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
                 //{ have_application = Convert.ToInt32(reader[program_name]); }
                 //catch
                 //{ have_application = 0; }
-                Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
-                Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
-                //if (!Dispatcher.CheckAccess())
-                //    {
-                //        Dispatcher.Invoke(() =>
-                //        {
-                //            Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
-                //            Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
-                //        }, DispatcherPriority.Normal);
-                //    }
-                //    else
-                //    {
-                //        Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
-                //        Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
-                //    }
+                //Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
+                //Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
+                if (!Dispatcher.CheckAccess())
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
+                        Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
+                    }, DispatcherPriority.Normal);
                 }
+                else
+                {
+                    Application_Box_UC application_Box_UC = new Application_Box_UC(id/*, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference*/);
+                    Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
+                }
+            }
                 My_Con.closeConnection();
-            //});
+            });
         }
     }
 }
