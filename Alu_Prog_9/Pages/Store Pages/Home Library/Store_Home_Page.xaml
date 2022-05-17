@@ -4,7 +4,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Alu_Prog_9.Pages"
+      xmlns:local="clr-namespace:Alu_Prog_9.Pages" xmlns:user_control="clr-namespace:Alu_Prog_9.User_Control"
       mc:Ignorable="d" 
       d:DesignHeight="670" d:DesignWidth="940"
       Title="Store_Home_Page">
@@ -27,7 +27,7 @@
                    FontSize="22"
                    Margin="20 0 0 0"
                    FontFamily="/Fonts/#Poppins"/>
-        <StackPanel Grid.Row="1">
+        <StackPanel x:Name="Er" Grid.Row="1">
             <RadioButton
                 x:Name="Store_Home_Programs_But"
                 Content="Программы"

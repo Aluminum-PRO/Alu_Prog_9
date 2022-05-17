@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Blend for Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loading_Animation(Blend)", "Loading_Animation(Blend)\Loading_Animation(Blend).csproj", "{C091B6FB-6F96-4BA0-A116-1E86852AC70A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C091B6FB-6F96-4BA0-A116-1E86852AC70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C091B6FB-6F96-4BA0-A116-1E86852AC70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C091B6FB-6F96-4BA0-A116-1E86852AC70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C091B6FB-6F96-4BA0-A116-1E86852AC70A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {826F33C6-4321-48B4-B100-C429A4A47386}
+	EndGlobalSection
+EndGlobal

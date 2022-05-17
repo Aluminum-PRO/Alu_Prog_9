@@ -346,6 +346,9 @@
     <Compile Include="User_Control\Comment_UC.xaml.cs">
       <DependentUpon>Comment_UC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\Uploading_Application_Animation_UC.xaml.cs">
+      <DependentUpon>Uploading_Application_Animation_UC.xaml</DependentUpon>
+    </Compile>
     <Page Include="Application_Soft_Box_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -510,6 +513,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Control\Comment_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Control\Uploading_Application_Animation_UC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

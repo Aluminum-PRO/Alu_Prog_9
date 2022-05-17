@@ -30,8 +30,6 @@ namespace Alu_Prog_9.User_Control
     {
         private MySql_Connector My_Con;
         private MySqlCommand command;
-        private DataTable Tab_Accounts_Db;
-        private DataTable Tab_Programs_Db;
         private MySqlDataAdapter adapter;
         private MySqlDataReader reader;
 
@@ -53,66 +51,21 @@ namespace Alu_Prog_9.User_Control
         private string version = "";
         private string reference = "";
 
-        public Application_Box_UC(int id/*, string type, double size, string name, string program_name, BitmapImage image, BitmapImage image_1, BitmapImage image_2, BitmapImage image_3, BitmapImage image_4, string description, string shortcut_description, string hot_key, int have_application, double price, string version, string reference*/)
+        public Application_Box_UC(int id)
         {
             InitializeComponent();
             this.id = id;
             Uploading_Application_Data();
-            //_type = type;
-            //_size = size;
-            //_name = name;
-            //_program_name = program_name;
-            //_image = image; _image_1 = image_1; _image_2 = image_2; _image_3 = image_3; _image_4 = image_4;
-            //_description = description;
-            //_shortcut_description = shortcut_description;
-            //_hot_key = hot_key;
-            //_have_application = have_application;
-            //_price = price;
-            //_version = version;
-            //_reference = reference;
-
-            //Name_Application.Text = name.ToString()/*.Replace(@"_", " ")*/;
-            // Метод для поля "Have_Application"
-            //{
-            //    if (have_application == 1)
-            //    {
-            //        Have_Application.Text = "Имеется";
-            //    }
-            //    else if (have_application == 0)
-            //    {
-            //        if (price == 0)
-            //        {
-            //            Have_Application.Text = "Бесплатно";
-            //        }
-            //        else if (price > 0)
-            //        {
-            //            Have_Application.Text = "Цена: " + price.ToString() + " ₽";
-            //        }
-            //    }
-            //}
-            //Application_Image.Source = image;
-
         }
 
-        private async void Uploading_Application_Data()
+        private void Uploading_Application_Data()
         {
-            //await Task.Run(() =>
-            //{
-                My_Con = new MySql_Connector();
+                
+            My_Con = new MySql_Connector();
 
-                Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
                 adapter = new MySqlDataAdapter();
                 command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Applications_Db.id = @id AND Tab_Programs_Db.login = @login", My_Con.getConnection());
                 command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id; command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-                // Другие варианты запроса Command
-                {
-                    //command = new MySqlCommand("SELECT `name`, `program_name`, `image`, `description`, `price`, `version`, `version_TPK_Ed`, `reference`, `reference_TPK_Ed`, `Off_PC`, `The_15_Puzzle` FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Applications_Db.type = @type AND Tab_Programs_Db.login = @login", My_Con.getConnection());
-
-                    //command = new MySqlCommand("SELECT Tab_Applications_Db.name, Tab_Applications_Db.program_name, Tab_Applications_Db.image, " +
-                    //    "Tab_Applications_Db.description, Tab_Applications_Db.price, Tab_Applications_Db.version, Tab_Applications_Db.version_TPK_Ed, " +
-                    //    "Tab_Applications_Db.reference, Tab_Applications_Db.reference_TPK_Ed, Tab_Programs_Db.Off_PC FROM Tab_Applications_Db, Tab_Programs_Db WHERE Tab_Applications_Db.type = @type AND Tab_Programs_Db.login = @login", My_Con.getConnection());
-                }
 
                 My_Con.openConnection();
 
@@ -209,7 +162,6 @@ namespace Alu_Prog_9.User_Control
                     }
                 }
                 Application_Image.Source = image;
-            //});
         }
 
         private void Open_Application_Box_But_Click(object sender, RoutedEventArgs e)

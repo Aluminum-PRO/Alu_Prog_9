@@ -1,4 +1,5 @@
 ﻿using Alu_Prog_9.Classes;
+using Alu_Prog_9.User_Control;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,9 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
 
             StaticVars.Store_Home_Frame = Store_Home_Frame;
             Store_Home_Frame.Content = new Store_Home_Application_Page(Type);
+
+            Uploading_Application_Animation_UC uploading_Application_Animation_UC = new Uploading_Application_Animation_UC();
+            Er.Children.Add(uploading_Application_Animation_UC);
         }
 
         private void Store_Home_Programs_But_Click(object sender, RoutedEventArgs e)

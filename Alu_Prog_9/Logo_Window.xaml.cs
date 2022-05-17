@@ -118,7 +118,7 @@ namespace Alu_Prog_9
 
         public async Task Opacity_LoadAsync()
         {
-            await Task.Run(() => { }); //TODO: Доделать асинхронную заставку лого!
+            await Task.Run(() => { }); //TODO: Доделать асинхронную заставку лого !
             for (Opacity = 0; Opacity <= 1;)
             {
                 Opacity += 0.05;
