@@ -1,4 +1,5 @@
-﻿using Alu_Prog_9.MySql_Services;
+﻿using Alu_Prog_9.Classes;
+using Alu_Prog_9.MySql_Services;
 using Alu_Prog_9.User_Control;
 using MySql.Data.MySqlClient;
 using System;
@@ -28,7 +29,37 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
         public Store_Home_Application_Page(string Type)
         {
             InitializeComponent();
-            Spawn_Applications(Type);
+            New_Spawn_Applications(Type);
+            //Spawn_Applications(Type);
+        }
+
+        private void New_Spawn_Applications(string Type)
+        {
+            foreach (StaticVars.DataBase i in StaticVars.Application)
+            {
+                if (i.type == Type)
+                {
+                    id = i.id;
+                    type = i.type;
+                    size = i.size;
+                    name = i.name;
+                    program_name = i.program_name;
+                    image = i.image;
+                    image_1 = i.image_1;
+                    image_2 = i.image_2;
+                    image_3 = i.image_3;
+                    image_4 = i.image_4;
+                    version = i.version;
+                    reference = i.reference;
+                    have_application = i.have_application;
+                    description = i.description;
+                    shortcut_description = i.shortcut_description;
+                    hot_key = i.hot_key;
+                    price = i.price;
+                    Application_Box_UC application_Box_UC = new Application_Box_UC(id, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, reference);
+                    Area_for_Applicatoin_Box.Children.Add(application_Box_UC);
+                }
+            }
         }
 
         async private void Spawn_Applications(string Type)

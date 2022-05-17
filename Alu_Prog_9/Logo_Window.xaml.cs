@@ -146,9 +146,11 @@ namespace Alu_Prog_9
                 await Task.Delay(30);
             }
 
+
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
             My_Hand.Get_Update_Information_Al_Store();
+            My_Hand.Download_DB();
             if (Properties.Settings.Default.Authorization == 1)
             {
                 My_Hand.Getting_User_Data();

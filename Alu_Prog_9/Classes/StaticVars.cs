@@ -5,11 +5,25 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Alu_Prog_9.Classes
 {
     public static class StaticVars
     {
+        public class DataBase
+        {
+            //public bool empty = false;
+            //public int count = 0;
+            //public string name;
+
+            public int id = 0, have_application;
+            public double price, size;
+            public string type, name, program_name, description, shortcut_description, hot_key, version, reference;
+            public BitmapImage image, image_1, image_2, image_3, image_4;
+        }
+        public static List<DataBase> Application = new List<DataBase>();
+
         public static MainWindow MainWindow;
 
         public static Frame Main_Frame, Store_Frame, Store_Home_Frame, Store_Library_Frame, Store_Soft_Frame;
