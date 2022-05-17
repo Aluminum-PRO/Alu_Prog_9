@@ -1,6 +1,5 @@
 ﻿using Alu_Prog_9.MySql_Services;
 using Alu_Prog_9.Services;
-using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -17,10 +16,9 @@ namespace Alu_Prog_9
     /// </summary>
     public partial class Logo_Window : Window
     {
-        MySql_Handler My_Hand;
-        Handler handler;
-
-        string Activated_File_Text;
+        private MySql_Handler My_Hand;
+        private Handler handler;
+        private string Activated_File_Text;
 
         public Logo_Window()
         {
@@ -65,7 +63,7 @@ namespace Alu_Prog_9
                 Properties.Settings.Default.User_Identyty = Environment.UserName;
 
                 bool isAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-                
+
                 if (isAdmin == false && Source.Remove(1) == "C")
                 {
                     Opacity = 0;
@@ -113,10 +111,10 @@ namespace Alu_Prog_9
                 Properties.Settings.Default.Save();
             }
 
-            _ = Opacity_LoadAsync();
+            Opacity_LoadAsync();
         }
 
-        public async Task Opacity_LoadAsync()
+        private async Task Opacity_LoadAsync()
         {
             for (Opacity = 0; Opacity <= 1;)
             {
@@ -137,20 +135,13 @@ namespace Alu_Prog_9
                 Opacity += 0.05;
                 await Task.Delay(30);
             }
-
-            await Task.Delay(1000);
-
-            for (Opacity = 1; Opacity >= 0;)
-            {
-                Opacity -= 0.05;
-                await Task.Delay(30);
-            }
-
+            
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
             My_Hand.Get_Update_Information_Al_Store();
             My_Hand.Download_DB();
+
             if (Properties.Settings.Default.Authorization == 1)
             {
                 My_Hand.Getting_User_Data();
@@ -175,12 +166,17 @@ namespace Alu_Prog_9
                         My_Hand.Get_Update_Information_Application();
 
                         //TODO: Переделать окно уведомления о восстановлении активации
-                        MessageBox.Show(" Сработала функция восстановления активации.\n Добро пожаловать, " + Properties.Settings.Default.User_Name + " " + Properties.Settings.Default.User_SurName + "!", "Al-Store");
-                        //MyShortNotification.ShowDialog("Сработала функция восстановления активации.\n Добро пожаловать, " + Properties.Settings.Default.User_Name + " " + Properties.Settings.Default.User_SurName + "!");
+                        System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+                        notifyIcon.Visible = true;
+                        notifyIcon.Text = "Al-Store";
+                        notifyIcon.Icon = Properties.Resources.Al_Store;
+                        notifyIcon.ShowBalloonTip(5000, "Al-Store", " Сработала функция восстановления активации.\n Добро пожаловать, " + Properties.Settings.Default.User_Name + " " + Properties.Settings.Default.User_SurName + "!", System.Windows.Forms.ToolTipIcon.Info);
+                        notifyIcon.Visible = false;
+                        //notifyIcon.Click += NotifyIcon_Click;
                     }
                 }
             }
-            
+
 
             if (!File.Exists("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\Desktop\\Al-Store.lnk") && Properties.Settings.Default.Start_Creating_Shortcut == 0)
             {
@@ -209,6 +205,12 @@ namespace Alu_Prog_9
 
                 handler = new Handler();
                 handler.Create_Shortcut("Al-Store", "Al-Store", "", "Al-Store - Магазин приложений", Properties.Settings.Default.Ver_Store, "Ctrl+Shift+A");
+            }
+
+            for (Opacity = 1; Opacity >= 0;)
+            {
+                Opacity -= 0.05;
+                await Task.Delay(30);
             }
 
             MainWindow mainWindow = new MainWindow();

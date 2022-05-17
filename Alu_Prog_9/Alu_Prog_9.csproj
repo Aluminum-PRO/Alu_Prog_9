@@ -346,6 +346,9 @@
     <Compile Include="User_Control\Comment_UC.xaml.cs">
       <DependentUpon>Comment_UC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\Loading_Animation_UC.xaml.cs">
+      <DependentUpon>Loading_Animation_UC.xaml</DependentUpon>
+    </Compile>
     <Page Include="Application_Soft_Box_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -513,6 +516,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="User_Control\Loading_Animation_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MySql_Services\MySql_Connector.cs" />
@@ -616,7 +623,9 @@
     <Resource Include="Resources\Images\heart.png" />
     <Resource Include="Resources\Images\un_heart.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Al-Store.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
