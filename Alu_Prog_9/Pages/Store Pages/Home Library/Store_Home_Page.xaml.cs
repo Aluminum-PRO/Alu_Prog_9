@@ -43,25 +43,38 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
         private void Store_Home_Programs_But_Click(object sender, RoutedEventArgs e)
         {
             Type = "Programs";
-            Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
+            //if (Store_Home_Programs_But.IsChecked == false)
+                Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
         }
 
         private void Store_Home_Games_But_Click(object sender, RoutedEventArgs e)
         {
             Type = "Games";
-            Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
+            //if (Store_Home_Games_But.IsChecked == false)
+                Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
         }
 
         private void Store_Home_Test_But_Click(object sender, RoutedEventArgs e)
         {
             Type = "Tests";
-            Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
+            //if (Store_Home_Test_But.IsChecked == false)
+                Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
         }
 
         private void Store_Home_Admin_But_Click(object sender, RoutedEventArgs e)
         {
             Type = "Admins";
-            Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
+            //if (Store_Home_Admin_But.IsChecked == false)
+                Store_Home_Frame.NavigationService.Navigate(new Store_Home_Application_Page(Type));
+        }
+
+        private void Store_Home_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (Store_Home_Frame.NavigationService.CanGoBack)
+            {
+                Store_Home_Frame.NavigationService.RemoveBackEntry();
+            }
+            Store_Home_Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

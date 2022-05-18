@@ -19,7 +19,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame x:Name="Store_Library_Frame" Grid.Row="1" Grid.Column="2"></Frame>
+        <Frame x:Name="Store_Library_Frame" Grid.Row="1" Grid.Column="2" Navigated="Store_Library_Frame_Navigated"></Frame>
         <TextBlock Text="Библиотека"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"

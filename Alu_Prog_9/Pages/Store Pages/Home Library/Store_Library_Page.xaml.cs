@@ -38,13 +38,24 @@ namespace Alu_Prog_9.Pages.Store_Pages.Home_Library
         private void Store_Library_Installed_But_Click(object sender, RoutedEventArgs e)
         {
             install = "True";
-            Store_Library_Frame.NavigationService.Navigate(new Store_Library_Application_Page(install));
+            //if (Store_Library_Installed_But.IsChecked == false)
+                Store_Library_Frame.NavigationService.Navigate(new Store_Library_Application_Page(install));
         }
 
         private void Store_Library_Not_Installed_But_Click(object sender, RoutedEventArgs e)
         {
             install = "False";
-            Store_Library_Frame.NavigationService.Navigate(new Store_Library_Application_Page(install));
+            //if (Store_Library_Not_Installed_But.IsChecked == false)
+                Store_Library_Frame.NavigationService.Navigate(new Store_Library_Application_Page(install));
+        }
+
+        private void Store_Library_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (Store_Library_Frame.NavigationService.CanGoBack)
+            {
+                Store_Library_Frame.NavigationService.RemoveBackEntry();
+            }
+            Store_Library_Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

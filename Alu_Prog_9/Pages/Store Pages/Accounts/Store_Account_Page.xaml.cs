@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Alu_Prog_9.Pages.Store_Pages.Accounts
 {
@@ -29,12 +18,23 @@ namespace Alu_Prog_9.Pages.Store_Pages.Accounts
 
         private void Store_Account_Account_But_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Store_Account_Account_Page());
+            //if (Store_Account_Account_But.IsChecked == false)
+                NavigationService.Navigate(new Store_Account_Account_Page());
         }
 
         private void Store_Account_Settings_But_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Store_Account_Settings_Page());
+            //if (Store_Account_Settings_But.IsChecked == false)
+                NavigationService.Navigate(new Store_Account_Settings_Page());
+        }
+
+        private void Store_Account_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (NavigationService.CanGoBack)
+            {
+                NavigationService.RemoveBackEntry();
+            }
+            NavigationService.RemoveBackEntry();
         }
     }
 }

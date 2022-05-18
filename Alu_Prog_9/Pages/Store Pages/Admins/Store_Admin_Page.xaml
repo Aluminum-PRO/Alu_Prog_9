@@ -19,7 +19,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame x:Name="Store_Admin_Frame" Grid.Row="1" Grid.Column="2"></Frame>
+        <Frame x:Name="Store_Admin_Frame" Grid.Row="1" Grid.Column="2" Navigated="Store_Admin_Frame_Navigated"></Frame>
         <TextBlock Text="Администрирование"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"

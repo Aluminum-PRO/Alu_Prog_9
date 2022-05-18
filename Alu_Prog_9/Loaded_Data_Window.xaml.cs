@@ -129,14 +129,10 @@ namespace Alu_Prog_9
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
             My_Hand.Get_Update_Information_Al_Store();
-            My_Hand.Download_DB();
 
             if (Properties.Settings.Default.Authorization == 1)
             {
-                My_Hand.Getting_User_Data();
-                My_Hand.Checking_For_Account_Creation();
-                My_Hand.Getting_User_Properties();
-                My_Hand.Get_Update_Information_Application();
+                My_Hand.Loaded_Connections_And_Loaded_Data();
             }
             else if (Properties.Settings.Default.Authorization == 0)
             {
@@ -149,10 +145,7 @@ namespace Alu_Prog_9
 
                     if (Restoring_Authorization_Bool == "True")
                     {
-                        My_Hand.Getting_User_Data();
-                        My_Hand.Checking_For_Account_Creation();
-                        My_Hand.Getting_User_Properties();
-                        My_Hand.Get_Update_Information_Application();
+                        My_Hand.Loaded_Connections_And_Loaded_Data();
 
                         //TODO: Переделать окно уведомления о восстановлении активации
                         System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();

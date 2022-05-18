@@ -42,7 +42,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
                     }
                 }
             }
-            StaticVars.Count_Soft_Text_box.Text += StaticVars.Count_Soft.ToString();
+            StaticVars.Count_Soft_Text_box.Text = "Софт не от Aluminum-Company: " + StaticVars.Count_Soft.ToString();
         }
     }
 }

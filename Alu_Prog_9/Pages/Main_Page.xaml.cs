@@ -80,54 +80,64 @@ namespace Alu_Prog_9.Pages
                 Store_Bot_Soft_But.Visibility = Visibility.Visible;
             }
             Login_But.Content = Properties.Settings.Default.User_Login;
+            Store_Bot_Soft_But.Visibility = Visibility.Collapsed;
         }
 
         private void Store_Home_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_Home_Page());
+            //if (Store_Home_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_Home_Page());
         }
 
         private void Store_News_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_News_Page());
+            //if (Store_News_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_News_Page());
         }
 
         private void Store_Library_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_Library_Page());
+            //if (Store_Library_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_Library_Page());
         }
 
         private void Store_Settings_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_Settings_Page());
+            //if (Store_Settings_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_Settings_Page());
         }
 
         private void Store_Basket_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_Basket_Page());
+            //if (Store_Basket_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_Basket_Page());
         }
 
         private void Store_Admin_But_Click(object sender, RoutedEventArgs e)
         {
-            Store_Frame.NavigationService.Navigate(new Store_Admin_Page());
+            //if (Store_Admin_But.IsChecked == false)
+                Store_Frame.NavigationService.Navigate(new Store_Admin_Page());
         }
 
         private void Store_Soft_But_Click(object sender, RoutedEventArgs e)
         {
-            if (StaticVars.Soft_License == 0)
+            //if (Store_Soft_But.IsChecked == false)
             {
-                My_Hand = new MySql_Handler();
-                My_Hand.Getting_User_Data();
-            }
-            if (StaticVars.Soft_License == 1)
-            {
-                Store_Frame.NavigationService.Navigate(new Store_Soft_Page());
-            }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show(" У вас нет лицензии на использование стороннего софта.\nНажмите 'Ок', для связи с разработчиком. \nЕщё связь с разработчиком:\n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Al-Store", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
-                if (result == MessageBoxResult.OK)
-                { Process.Start("https://vk.com/aluminum343/"); }
+                if (StaticVars.Soft_License == 0)
+                {
+                    My_Hand = new MySql_Handler();
+                    My_Hand.Getting_User_Data();
+                }
+                if (StaticVars.Soft_License == 1)
+                {
+                    Store_Frame.NavigationService.Navigate(new Store_Soft_Page());
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show(" У вас нет лицензии на использование стороннего софта.\nНажмите 'Ок', для связи с разработчиком. \nЕщё связь с разработчиком:\n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Al-Store", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                    if (result == MessageBoxResult.OK)
+                    { Process.Start("https://vk.com/aluminum343/"); }
+                }
             }
         }
 
@@ -139,20 +149,32 @@ namespace Alu_Prog_9.Pages
 
         private void Store_Bot_Soft_But_Click(object sender, RoutedEventArgs e)
         {
-            My_Hand = new MySql_Handler();
-            My_Hand.Get_Bot_Data(out int id, out string type, out double size, out string name, out string program_name, out BitmapImage image, out string description, out string clicker_path, out double price, out string version, out string reference);
-            if (StaticVars.Bot_License == 0)
+            //if (Store_Bot_Soft_But.IsChecked == false)
             {
-                My_Hand.Getting_User_Data();
+                My_Hand = new MySql_Handler();
+                My_Hand.Get_Bot_Data(out int id, out string type, out double size, out string name, out string program_name, out BitmapImage image, out string description, out string clicker_path, out double price, out string version, out string reference);
+                if (StaticVars.Bot_License == 0)
+                {
+                    My_Hand.Getting_User_Data();
+                }
+                if (StaticVars.Bot_License == 1)
+                {
+                    Store_Frame.NavigationService.Navigate(new Bot_Library_Box_Page(id, type, size, name, program_name, image, description, clicker_path, StaticVars.Bot_License, price, version, reference));
+                }
+                else
+                {
+                    Store_Frame.NavigationService.Navigate(new Bot_Box_Page(id, type, size, name, program_name, image, description, clicker_path, StaticVars.Bot_License, price, version, reference));
+                }
             }
-            if (StaticVars.Bot_License == 1)
+        }
+
+        private void Store_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (Store_Frame.NavigationService.CanGoBack)
             {
-                Store_Frame.NavigationService.Navigate(new Bot_Library_Box_Page(id, type, size, name, program_name, image, description, clicker_path, StaticVars.Bot_License, price, version, reference));
+                Store_Frame.NavigationService.RemoveBackEntry();
             }
-            else
-            {
-                Store_Frame.NavigationService.Navigate(new Bot_Box_Page(id, type, size, name, program_name, image, description, clicker_path, StaticVars.Bot_License, price, version, reference));
-            }
+            Store_Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

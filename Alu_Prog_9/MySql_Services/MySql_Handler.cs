@@ -13,6 +13,7 @@ namespace Alu_Prog_9.MySql_Services
 {
     public class MySql_Handler
     {
+        //TODO: Оптимизировать запросы, сделать получение данных за один запрос
         MySql_Connector My_Con;
         MySqlCommand command;
         DataTable Tab_Accounts_Db; DataTable Tab_Programs_Db; DataTable Tab_Al_Store_Properties_Db;
@@ -29,6 +30,14 @@ namespace Alu_Prog_9.MySql_Services
         string program_name, version, reference;
         BitmapImage image, image_1, image_2, image_3, image_4;
 
+        public void Loaded_Connections_And_Loaded_Data()
+        {
+            Getting_User_Data();
+            Checking_For_Account_Creation();
+            Getting_User_Properties();
+            Get_Update_Information_Application();
+            Download_DB();
+        }
 
         public void Login(string Login_User, string Password_User, out string Login_Bool)
         {
@@ -103,7 +112,6 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
             adapter = new MySqlDataAdapter();
             command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login", My_Con.getConnection());
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
@@ -221,7 +229,7 @@ namespace Alu_Prog_9.MySql_Services
                     id = Convert.ToInt32(reader["soft_id"]),
                     file_type = reader["soft_file_type"].ToString(),
                     file_size = Convert.ToDouble(reader["soft_file_size"]),
-                    name = reader["soft_program_name"].ToString(),
+                    name = reader["soft_name"].ToString(),
                     program_name = reader["soft_program_name"].ToString(),
                     pass = reader["soft_pass"].ToString(),
                     image = this.image,
@@ -236,7 +244,6 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Accounts_Db = new DataTable();
             adapter = new MySqlDataAdapter();
 
             command = new MySqlCommand("SELECT * FROM `Tab_Accounts_Db` WHERE `id` = 1", My_Con.getConnection());
@@ -258,7 +265,7 @@ namespace Alu_Prog_9.MySql_Services
 
         public void Getting_User_Data()
         {
-            My_Con = new MySql_Connector(); /*My_Hand = new MySql_Handler();*/
+            My_Con = new MySql_Connector();
             adapter = new MySqlDataAdapter();
 
             Tab_Accounts_Db = new DataTable();
@@ -336,8 +343,6 @@ namespace Alu_Prog_9.MySql_Services
             My_Con = new MySql_Connector(); /*My_Hand = new MySql_Handler();*/
             adapter = new MySqlDataAdapter();
 
-            Tab_Accounts_Db = new DataTable();
-
             command = new MySqlCommand("SELECT * FROM `Tab_Accounts_Db` WHERE `login` = @login", My_Con.getConnection());
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
 
@@ -358,7 +363,6 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
             adapter = new MySqlDataAdapter();
             command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login", My_Con.getConnection());
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
@@ -401,9 +405,7 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
             adapter = new MySqlDataAdapter();
-
             command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Db` WHERE `id` = 1", My_Con.getConnection());
 
             My_Con.openConnection();
@@ -441,9 +443,7 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Programs_Db = new DataTable();
             adapter = new MySqlDataAdapter();
-
             command = new MySqlCommand("UPDATE `Tab_Programs_Db` SET `" + program_name + "` = @program_name WHERE `Tab_Programs_Db`.`login` = @login", My_Con.getConnection());
 
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login; command.Parameters.Add("@program_name", MySqlDbType.Int32).Value = 1;
@@ -523,8 +523,6 @@ namespace Alu_Prog_9.MySql_Services
             My_Con = new MySql_Connector();
             adapter = new MySqlDataAdapter();
 
-            Tab_Al_Store_Properties_Db = new DataTable();
-
             command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Properties_Db` WHERE `login` = @login", My_Con.getConnection());
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
 
@@ -546,7 +544,6 @@ namespace Alu_Prog_9.MySql_Services
             My_Con = new MySql_Connector();
             adapter = new MySqlDataAdapter();
 
-            Tab_Al_Store_Properties_Db = new DataTable();
             command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Db` WHERE `id` = 1", My_Con.getConnection());
             size = 0;
             reference = "";
@@ -597,7 +594,6 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector(); /*My_Hand = new MySql_Handler();*/
             adapter = new MySqlDataAdapter();
-
             command = new MySqlCommand("INSERT INTO `Tab_Applications_Comments_Db` (`application_id`, `user_id`, `name`, `surname`, `comment_text`, `time_send`) VALUES (@application_id, @user_id, @name, @surname, @comment_text, @time_send)", My_Con.getConnection());
 
             command.Parameters.Add("@application_id", MySqlDbType.Int32).Value = application_id;
@@ -621,7 +617,6 @@ namespace Alu_Prog_9.MySql_Services
         {
             My_Con = new MySql_Connector();
 
-            Tab_Accounts_Db = new DataTable(); Tab_Programs_Db = new DataTable();
             adapter = new MySqlDataAdapter();
             command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login", My_Con.getConnection());
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
@@ -989,7 +984,6 @@ namespace Alu_Prog_9.MySql_Services
         public void Recovery_New_Pass(string Email, string Pass, string Login, out string Result)
         {
             My_Con = new MySql_Connector();
-            Tab_Accounts_Db = new DataTable();
             adapter = new MySqlDataAdapter();
 
             command = new MySqlCommand("UPDATE `Tab_Accounts_Db` SET `pass` = @pass WHERE `Tab_Accounts_Db`.`email` = @email", My_Con.getConnection());

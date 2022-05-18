@@ -1,18 +1,7 @@
 ﻿using Alu_Prog_9.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
 {
@@ -21,7 +10,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
     /// </summary>
     public partial class Store_Soft_Page : Page
     {
-        string downloaded;
+        private string downloaded;
 
         public Store_Soft_Page()
         {
@@ -40,13 +29,24 @@ namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
         private void Store_Soft_Downloaded_But_Click(object sender, RoutedEventArgs e)
         {
             downloaded = "True";
-            Store_Soft_Frame.NavigationService.Navigate(new Store_Soft_Application_Page(downloaded));
+            //if (Store_Soft_Downloaded_But.IsChecked == false)
+                Store_Soft_Frame.NavigationService.Navigate(new Store_Soft_Application_Page(downloaded));
         }
 
         private void Store_Soft_Not_Downloaded_But_Click(object sender, RoutedEventArgs e)
         {
             downloaded = "False";
-            Store_Soft_Frame.NavigationService.Navigate(new Store_Soft_Application_Page(downloaded));
+            //if (Store_Soft_Not_Downloaded_But.IsChecked == false)
+                Store_Soft_Frame.NavigationService.Navigate(new Store_Soft_Application_Page(downloaded));
+        }
+
+        private void Store_Soft_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (Store_Soft_Frame.NavigationService.CanGoBack)
+            {
+                Store_Soft_Frame.NavigationService.RemoveBackEntry();
+            }
+            Store_Soft_Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

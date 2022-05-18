@@ -104,10 +104,7 @@ namespace Alu_Prog_9.Pages.Login_Pages
                 }
                 File.WriteAllText("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\AppData\\Roaming\\Aluminum-Company\\Al-Store\\Activated\\Activated_File.txt", Properties.Settings.Default.User_Login + " " + Properties.Settings.Default.User_Password);
 
-                My_Hand.Getting_User_Data();
-                My_Hand.Checking_For_Account_Creation();
-                My_Hand.Getting_User_Properties();
-                My_Hand.Get_Update_Information_Application();
+                My_Hand.Loaded_Connections_And_Loaded_Data();
 
                 Properties.Settings.Default.Save();
 

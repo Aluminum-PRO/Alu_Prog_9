@@ -19,7 +19,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame x:Name="Store_Soft_Frame" Grid.Row="1" Grid.Column="2"></Frame>
+        <Frame x:Name="Store_Soft_Frame" Grid.Row="1" Grid.Column="2" Navigated="Store_Soft_Frame_Navigated" ></Frame>
         <TextBlock Text="Софт не от Aluminum-Company: " x:Name="Count_Soft_Text_box"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
