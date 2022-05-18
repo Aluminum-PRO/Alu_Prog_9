@@ -282,6 +282,9 @@
       <DependentUpon>Application_Soft_Box_Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\StaticVars.cs" />
+    <Compile Include="Loaded_Data_Window.xaml.cs">
+      <DependentUpon>Loaded_Data_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store Pages\Applications\Application_Box_Page.xaml.cs">
       <DependentUpon>Application_Box_Page.xaml</DependentUpon>
     </Compile>
@@ -350,6 +353,10 @@
       <DependentUpon>Loading_Animation_UC.xaml</DependentUpon>
     </Compile>
     <Page Include="Application_Soft_Box_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Loaded_Data_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

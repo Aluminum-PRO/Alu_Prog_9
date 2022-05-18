@@ -194,6 +194,42 @@ namespace Alu_Prog_9.MySql_Services
             }
             My_Con.closeConnection();
 
+            My_Con = new MySql_Connector();
+
+            adapter = new MySqlDataAdapter();
+            command = new MySqlCommand("SELECT * FROM `Tab_Soft_Db` ORDER BY soft_name asc", My_Con.getConnection());
+
+            My_Con.openConnection();
+
+            reader = null;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                byte[] blob = (Byte[])reader["soft_image"];
+                using (MemoryStream ms = new MemoryStream(blob))
+                {
+                    var imageSource = new BitmapImage();
+                    imageSource.BeginInit();
+                    imageSource.StreamSource = ms;
+                    imageSource.CacheOption = BitmapCacheOption.OnLoad;
+                    imageSource.EndInit();
+                    image = imageSource;
+                }
+                StaticVars.Soft.Add(new StaticVars.DataBase()
+                {
+                    id = Convert.ToInt32(reader["soft_id"]),
+                    file_type = reader["soft_file_type"].ToString(),
+                    file_size = Convert.ToDouble(reader["soft_file_size"]),
+                    name = reader["soft_program_name"].ToString(),
+                    program_name = reader["soft_program_name"].ToString(),
+                    pass = reader["soft_pass"].ToString(),
+                    image = this.image,
+                    reference = reader["soft_reference"].ToString()
+                });
+                StaticVars.Count_Soft++;
+            }
+            My_Con.closeConnection();
         }
 
         public void Getting_Data()

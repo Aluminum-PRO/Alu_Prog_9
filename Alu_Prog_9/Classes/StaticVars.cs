@@ -13,16 +13,13 @@ namespace Alu_Prog_9.Classes
     {
         public class DataBase
         {
-            //public bool empty = false;
-            //public int count = 0;
-            //public string name;
-
             public int id = 0, have_application;
-            public double price, size;
-            public string type, name, program_name, description, shortcut_description, hot_key, version, reference;
+            public double price, size, file_size;
+            public string type, name, program_name, description, shortcut_description, hot_key, version, reference, download, pass, file_type;
             public BitmapImage image, image_1, image_2, image_3, image_4;
         }
         public static List<DataBase> Application = new List<DataBase>();
+        public static List<DataBase> Soft = new List<DataBase>();
 
         public static MainWindow MainWindow;
 
@@ -31,6 +28,8 @@ namespace Alu_Prog_9.Classes
         public static int Count_Update, Count_Update_Al, Count_Soft, Gender = 0, Soft_License, Bot_License;
 
         public static string Login, Rec_Email;
+
+        public static bool Loading_Data = true, Logo_Animation = true;
 
         public static Grid Ellepse_Grid;
         public static TextBlock Ellipse_text;

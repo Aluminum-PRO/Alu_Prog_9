@@ -39,6 +39,8 @@ namespace Alu_Prog_9
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Activate();
+
             //_bw = new BackgroundWorker();
             //_bw.DoWork += new DoWorkEventHandler((o, args) =>
             //{
