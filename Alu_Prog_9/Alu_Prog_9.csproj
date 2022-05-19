@@ -263,6 +263,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telegram.Bot, Version=17.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.17.0.0\lib\netstandard2.0\Telegram.Bot.dll</HintPath>
+    </Reference>
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
@@ -330,13 +333,18 @@
     <Compile Include="Pages\Store Pages\Settings\Store_Settings_Al_Bot_Page.xaml.cs">
       <DependentUpon>Store_Settings_Al_Bot_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Store Pages\Settings\Store_Settings_Errors_Page.xaml.cs">
+      <DependentUpon>Store_Settings_Errors_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store Pages\Softs Pages\Store_Soft_Application_Page.xaml.cs">
       <DependentUpon>Store_Soft_Application_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Store Pages\Softs Pages\Store_Soft_Page.xaml.cs">
       <DependentUpon>Store_Soft_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Errors_Saves_and_Sending.cs" />
     <Compile Include="Services\Handler.cs" />
+    <Compile Include="Services\Telegram_Bot_Send_Activity.cs" />
     <Compile Include="Update_Al_Window.xaml.cs">
       <DependentUpon>Update_Al_Window.xaml</DependentUpon>
     </Compile>
@@ -354,6 +362,9 @@
     </Compile>
     <Compile Include="User_Control\Loading_Animation_UC.xaml.cs">
       <DependentUpon>Loading_Animation_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Control\Update_Al_Store_But_UC.xaml.cs">
+      <DependentUpon>Update_Al_Store_But_UC.xaml</DependentUpon>
     </Compile>
     <Compile Include="User_Control\Update_App_But_UC.xaml.cs">
       <DependentUpon>Update_App_But_UC.xaml</DependentUpon>
@@ -489,6 +500,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Store Pages\Settings\Store_Settings_Errors_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Store Pages\Settings\Store_Settings_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -530,6 +545,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Control\Loading_Animation_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Control\Update_Al_Store_But_UC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

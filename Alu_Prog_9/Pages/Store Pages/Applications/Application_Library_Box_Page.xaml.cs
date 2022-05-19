@@ -21,8 +21,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
     public partial class Application_Library_Box_Page : Page
     {
         Handler handler;
-
-
+        Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
 
         int app_id;
         double app_Size;
@@ -209,7 +208,10 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
                     //}
                 };
             }
-            catch (Exception Ex) { MessageBox.Show(Ex.Message + "\n\n" + Ex.HelpLink, Ex.Source, MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex)
+            {
+                errors_Saves_And_Sending.Recording_Errors(ex); MessageBox.Show(ex.Message + "\n\n" + ex.HelpLink, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Update_Application_But_Click(object sender, RoutedEventArgs e)
@@ -219,8 +221,10 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
             ProgressBar.Value = 0;
             try
             { Directory.Delete(Properties.Settings.Default.Full_Path + "\\" + app_type + "\\" + app_name, true); }
-            catch
-            { MessageBox.Show("Ошибка.", "Al-Store"); Install_Application.Text = "Установлено"; return; }
+            catch (Exception ex)
+            {
+                errors_Saves_And_Sending.Recording_Errors(ex); MessageBox.Show("Ошибка.", "Al-Store"); Install_Application.Text = "Установлено"; return;
+            }
             WebClient webClient = new WebClient();
             try
             {
@@ -322,8 +326,10 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
                 Install_Application.Text = "Удаление...";
                 try
                 { Directory.Delete(Properties.Settings.Default.Full_Path + "\\" + app_type + "\\" + app_name, true); }
-                catch
-                { MessageBox.Show("Ошибка.", "Al-Store"); Install_Application.Text = "Установлено"; return; }
+                catch (Exception ex)
+                {
+                    errors_Saves_And_Sending.Recording_Errors(ex); MessageBox.Show("Ошибка.", "Al-Store"); Install_Application.Text = "Установлено"; return;
+                }
                 try
                 { File.Delete("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\Desktop\\" + app_name + ".lnk"); } //TODO: Почему то не удаляется ярлык Tools & Fun
                 catch { }

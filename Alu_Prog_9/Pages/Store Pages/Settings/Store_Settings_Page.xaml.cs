@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Alu_Prog_9.Pages.Store_Pages.Settings
 {
@@ -29,13 +18,18 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
         private void Store_Settings_Update_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Settings_Update_But.IsChecked == false)
-                Store_Settings_Frame.NavigationService.Navigate(new Store_Settings_Update_Page());
+            Store_Settings_Frame.NavigationService.Navigate(new Store_Settings_Update_Page());
         }
 
         private void Store_Settings_Al_Bot_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Settings_Al_Bot_But.IsChecked == false)
-                MessageBox.Show("Бота пока что не завезли!");
+            MessageBox.Show("Бота пока что не завезли!");
+        }
+
+        private void Store_Settings_Errors_But_Click(object sender, RoutedEventArgs e)
+        {
+            Store_Settings_Frame.NavigationService.Navigate(new Store_Settings_Errors_Page());
         }
 
         private void Store_Settings_Frame_Navigated(object sender, NavigationEventArgs e)
@@ -46,5 +40,6 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
             }
             Store_Settings_Frame.NavigationService.RemoveBackEntry();
         }
+
     }
 }

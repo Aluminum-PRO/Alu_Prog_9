@@ -1,20 +1,10 @@
 ﻿using Alu_Prog_9.MySql_Services;
+using Alu_Prog_9.User_Control;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
 {
@@ -23,14 +13,14 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
     /// </summary>
     public partial class Store_Admin_Update_Page : Page
     {
-        MySql_Connector My_Con;
-        MySqlCommand command;
-        MySqlDataAdapter adapter;
-        MySqlDataReader reader;
-
-        int id, have_application;
-        double size;
-        string type, name, program_name, version, TPK_version, reference, TPK_reference;
+        private MySql_Connector My_Con;
+        private MySqlCommand command;
+        private MySqlDataAdapter adapter;
+        private MySqlDataReader reader;
+        private int id, have_application;
+        private double size, price;
+        private string type, name, program_name, version, TPK_version, reference, TPK_reference, description, shortcut_description, hot_key;
+        private BitmapImage image, image_1, image_2, image_3, image_4;
 
         public Store_Admin_Update_Page()
         {
@@ -42,38 +32,39 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
             My_Con = new MySql_Connector();
 
             adapter = new MySqlDataAdapter();
-            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Db`, `Tab_Applications_Db`", My_Con.getConnection());
+            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Db`; SELECT * FROM `Tab_Applications_Db`", My_Con.getConnection());
 
             My_Con.openConnection();
 
             reader = null;
             reader = command.ExecuteReader();
 
+
             while (reader.Read())
             {
-                version = reader["Tab_Al_Store_Db.version"].ToString();
-                version = reader["Tab_Al_Store_Db.version_TPK_Ed"].ToString();
-                reference = reader["Tab_Al_Store_Db.reference"].ToString();
-                reference = reader["Tab_Al_Store_Db.reference_TPK_Ed"].ToString();
+                name = reader["name"].ToString();
+                version = reader["version"].ToString();
+                TPK_version = reader["version_TPK_Ed"].ToString();
+                reference = reader["reference"].ToString();
+                TPK_reference = reader["reference_TPK_Ed"].ToString();
                 size = Convert.ToDouble(reader["size"]);
+                if (reader["id"].ToString() == "2" || reader["id"].ToString() == "3")
+                {
+                    Update_Al_Store_But_UC update_Al_Store_But_UC = new Update_Al_Store_But_UC(name, version, TPK_version, reference, TPK_reference, size);
+                    Al_Store_StackPanel.Children.Add(update_Al_Store_But_UC);
+                }
             }
 
-            while (reader.Read())
+            if (reader.NextResult())
             {
-                byte[] blob = (byte[])(reader["image_main"]);
-                using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
+                while (reader.Read())
                 {
-                    BitmapImage imageSource = new BitmapImage();
-                    imageSource.BeginInit();
-                    imageSource.StreamSource = ms;
-                    imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                    imageSource.EndInit();
-                    image = imageSource;
-                }
-                for (int i = 1; i < 5; i++)
-                {
-                    blob = (byte[])(reader["image_" + i]);
-
+                    id = Convert.ToInt32(reader["id"]);
+                    type = reader["type"].ToString();
+                    size = Convert.ToDouble(reader["size"]);
+                    name = reader["name"].ToString();
+                    program_name = reader["program_name"].ToString();
+                    byte[] blob = (byte[])(reader["image_main"]);
                     using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
                     {
                         BitmapImage imageSource = new BitmapImage();
@@ -81,61 +72,55 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
                         imageSource.StreamSource = ms;
                         imageSource.CacheOption = BitmapCacheOption.OnLoad;
                         imageSource.EndInit();
-                        if (i == 1)
+                        image = imageSource;
+                    }
+                    for (int i = 1; i < 5; i++)
+                    {
+                        blob = (byte[])(reader["image_" + i]);
+
+                        using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
                         {
-                            image_1 = imageSource;
-                        }
-                        else if (i == 2)
-                        {
-                            image_2 = imageSource;
-                        }
-                        else if (i == 3)
-                        {
-                            image_3 = imageSource;
-                        }
-                        else if (i == 4)
-                        {
-                            image_4 = imageSource;
+                            BitmapImage imageSource = new BitmapImage();
+                            imageSource.BeginInit();
+                            imageSource.StreamSource = ms;
+                            imageSource.CacheOption = BitmapCacheOption.OnLoad;
+                            imageSource.EndInit();
+                            if (i == 1)
+                            {
+                                image_1 = imageSource;
+                            }
+                            else if (i == 2)
+                            {
+                                image_2 = imageSource;
+                            }
+                            else if (i == 3)
+                            {
+                                image_3 = imageSource;
+                            }
+                            else if (i == 4)
+                            {
+                                image_4 = imageSource;
+                            }
                         }
                     }
-                }
-                if (Properties.Settings.Default.Edition == "'Standart'")
-                {
                     version = reader["version"].ToString();
                     reference = reader["reference"].ToString();
-
-                }
-                else if (Properties.Settings.Default.Edition == "'TPK'")
-                {
                     version = reader["version_TPK_Ed"].ToString();
                     reference = reader["reference_TPK_Ed"].ToString();
+                    description = reader["description"].ToString();
+                    shortcut_description = reader["shortcut_description"].ToString();
+                    hot_key = reader["hot_key"].ToString();
+                    price = Convert.ToDouble(reader["price"]);
+                    Update_App_But_UC update_App_But_UC = new Update_App_But_UC(id, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, have_application, price, version, TPK_version, reference, TPK_reference);
+                    if (type == "Programs")
+                        Programs_StackPanel.Children.Add(update_App_But_UC);
+                    else if (type == "Games")
+                        Games_StackPanel.Children.Add(update_App_But_UC);
+                    else if (type == "Tests")
+                        Tests_StackPanel.Children.Add(update_App_But_UC);
+                    else if (type == "Admins")
+                        Admins_StackPanel.Children.Add(update_App_But_UC);
                 }
-                program_name = reader["program_name"].ToString();
-
-                try
-                { have_application = Convert.ToInt32(reader[program_name]); }
-                catch
-                { have_application = 0; }
-                StaticVars.Application.Add(new StaticVars.DataBase()
-                {
-                    id = Convert.ToInt32(reader["id"]),
-                    type = reader["type"].ToString(),
-                    size = Convert.ToDouble(reader["size"]),
-                    name = reader["name"].ToString(),
-                    program_name = reader["program_name"].ToString(),
-                    image = this.image,
-                    image_1 = this.image_1,
-                    image_2 = this.image_2,
-                    image_3 = this.image_3,
-                    image_4 = this.image_4,
-                    version = this.version,
-                    reference = this.reference,
-                    have_application = this.have_application,
-                    description = reader["description"].ToString(),
-                    shortcut_description = reader["shortcut_description"].ToString(),
-                    hot_key = reader["hot_key"].ToString(),
-                    price = Convert.ToDouble(reader["price"]),
-                });
             }
             My_Con.closeConnection();
         }

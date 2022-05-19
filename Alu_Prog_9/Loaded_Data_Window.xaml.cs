@@ -76,6 +76,12 @@ namespace Alu_Prog_9
             Properties.Settings.Default.Path_Updater = Environment.ExpandEnvironmentVariables(Properties.Settings.Default.Full_Path + "\\Updater");
             Properties.Settings.Default.Path_Shortcut = Environment.ExpandEnvironmentVariables(Properties.Settings.Default.Full_Path + "\\Al-Store\\Иконки ярлыков");
 
+            Properties.Settings.Default.Path_Errors_Log = $@"C:\Users\{Properties.Settings.Default.User_Identyty}\AppData\Roaming\Aluminum-Company\Al-Store\Errors Log";
+            if (!Directory.Exists(Properties.Settings.Default.Path_Errors_Log))
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.Path_Errors_Log);
+            }
+
             Properties.Settings.Default.User_Identyty = Environment.UserName;
 
             bool isAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);

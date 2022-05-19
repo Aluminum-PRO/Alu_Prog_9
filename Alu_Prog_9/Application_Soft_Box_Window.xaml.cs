@@ -1,4 +1,5 @@
 ﻿using Alu_Prog_9.Classes;
+using Alu_Prog_9.Services;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +18,7 @@ namespace Alu_Prog_9
     /// </summary>
     public partial class Application_Soft_Box_Window : Window
     {
+        Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
         string Soft_Name, Soft_Reference, Soft_Pass;
         double Soft_Size;
 
@@ -151,9 +153,9 @@ namespace Alu_Prog_9
                     Soft_Open_Action_But.Visibility = Visibility.Visible;
                 };
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("No");
+                errors_Saves_And_Sending.Recording_Errors(ex); MessageBox.Show("No");
                 return;
             }
         }

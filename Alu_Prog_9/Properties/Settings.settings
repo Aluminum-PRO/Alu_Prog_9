@@ -113,7 +113,7 @@
     <Setting Name="Path_Bot_MTAProvince" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="_aa" Type="System.String" Scope="User">
+    <Setting Name="Path_Errors_Log" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="_ss" Type="System.String" Scope="User">

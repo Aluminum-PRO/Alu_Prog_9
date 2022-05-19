@@ -14,6 +14,7 @@ namespace Alu_Prog_9.MySql_Services
     public class MySql_Handler
     {
         //TODO: Оптимизировать запросы, сделать получение данных за один запрос
+        Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
         MySql_Connector My_Con;
         MySqlCommand command;
         DataTable Tab_Accounts_Db; DataTable Tab_Programs_Db; DataTable Tab_Al_Store_Properties_Db;
@@ -743,8 +744,9 @@ namespace Alu_Prog_9.MySql_Services
                     smtpClient.Send(message2);
                     smtpClient.Send(message3);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    errors_Saves_And_Sending.Recording_Errors(ex);
                     MessageBox.Show(" Не удалось отправить код подтверждения. Проверьте подключение к интернету или обратитесь к разработчику за помощью.", "Ошибка!");
                 }
             }

@@ -10,7 +10,6 @@
       Title="Store_Settings_Update_Page">
 
     <Viewbox Stretch="Uniform">
-
         <Grid>
             <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
                 <TextBlock Text="Окно обновления Al-Store:" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="200" Height="22" Margin="2,5,0,16" TextAlignment="Left" />
