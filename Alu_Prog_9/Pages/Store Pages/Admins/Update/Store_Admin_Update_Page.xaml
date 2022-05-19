@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Alu_Prog_9.Pages.Store_Pages.Admins.Update"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="870"
-      Title="Store_Admin_Update_Page">
+      Title="Store_Admin_Update_Page" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel>
