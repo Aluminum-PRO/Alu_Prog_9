@@ -12,7 +12,7 @@ namespace Alu_Prog_9.Services
             Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
 
             telegram_Bot_Send_Activity.Al_Store_Send_Errors(ex);
-            string Msg = $"{DateTime.Today}\nHResult: {ex.HResult}\nErr: {ex.Message}\nMethod: {ex.TargetSite}\n\n";
+            string Msg = $"{DateTime.Now}\nHResult: {ex.HResult}\nErr: {ex.Message}\nMethod: {ex.TargetSite}\n\n";
             using (StreamWriter stream = new StreamWriter(path, true))
                 stream.WriteLine(Msg);
         }
