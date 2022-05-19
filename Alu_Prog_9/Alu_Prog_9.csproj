@@ -285,6 +285,9 @@
     <Compile Include="Loaded_Data_Window.xaml.cs">
       <DependentUpon>Loaded_Data_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Store Pages\Admins\Update\Store_Admin_Update_Page.xaml.cs">
+      <DependentUpon>Store_Admin_Update_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store Pages\Applications\Application_Box_Page.xaml.cs">
       <DependentUpon>Application_Box_Page.xaml</DependentUpon>
     </Compile>
@@ -352,6 +355,9 @@
     <Compile Include="User_Control\Loading_Animation_UC.xaml.cs">
       <DependentUpon>Loading_Animation_UC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\Update_App_But_UC.xaml.cs">
+      <DependentUpon>Update_App_But_UC.xaml</DependentUpon>
+    </Compile>
     <Page Include="Application_Soft_Box_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -379,6 +385,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Store Pages\Admins\Update\Store_Admin_Update_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Store Pages\Applications\Application_Box_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -448,10 +458,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Store Pages\Admins\Store_Admin_Profiles_Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Store Pages\Admins\Store_Admin_Update_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -527,6 +533,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="User_Control\Update_App_But_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MySql_Services\MySql_Connector.cs" />
@@ -551,9 +561,6 @@
     </Compile>
     <Compile Include="Pages\Store Pages\Admins\Store_Admin_Profiles_Page.xaml.cs">
       <DependentUpon>Store_Admin_Profiles_Page.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Store Pages\Admins\Store_Admin_Update_Page.xaml.cs">
-      <DependentUpon>Store_Admin_Update_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Store Pages\Baskets\Store_Basket_Page.xaml.cs">
       <DependentUpon>Store_Basket_Page.xaml</DependentUpon>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Alu_Prog_9.Pages.Store_Pages.Admins
+namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
 {
     /// <summary>
     /// Логика взаимодействия для Store_Admin_Update_Page.xaml

@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Alu_Prog_9.User_Control.Update_App_But_UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Alu_Prog_9.User_Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="35" d:DesignWidth="850">
+    <Button x:Name="Al_Store_But" Content="App | Ver.0.0.0.0._" Margin="20 0 0 0" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}"/>
+</UserControl>
