@@ -291,6 +291,12 @@
     <Compile Include="Pages\Store Pages\Admins\Update\Store_Admin_Update_Page.xaml.cs">
       <DependentUpon>Store_Admin_Update_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Store Pages\Admins\Update\Update_Al_Store_Page.xaml.cs">
+      <DependentUpon>Update_Al_Store_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Store Pages\Admins\Update\Update_App_Page.xaml.cs">
+      <DependentUpon>Update_App_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store Pages\Applications\Application_Box_Page.xaml.cs">
       <DependentUpon>Application_Box_Page.xaml</DependentUpon>
     </Compile>
@@ -330,8 +336,14 @@
     <Compile Include="Pages\Store Pages\Home Library\Store_Library_Application_Page.xaml.cs">
       <DependentUpon>Store_Library_Application_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Store Pages\News\Store_News_Update_History_Page.xaml.cs">
+      <DependentUpon>Store_News_Update_History_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store Pages\Settings\Store_Settings_Al_Bot_Page.xaml.cs">
       <DependentUpon>Store_Settings_Al_Bot_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Store Pages\Settings\Store_Settings_Data_Loaded_Page.xaml.cs">
+      <DependentUpon>Store_Settings_Data_Loaded_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Store Pages\Settings\Store_Settings_Errors_Page.xaml.cs">
       <DependentUpon>Store_Settings_Errors_Page.xaml</DependentUpon>
@@ -397,6 +409,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\Store Pages\Admins\Update\Store_Admin_Update_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Store Pages\Admins\Update\Update_Al_Store_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Store Pages\Admins\Update\Update_App_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -496,7 +516,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Store Pages\News\Store_News_Update_History_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Store Pages\Settings\Store_Settings_Al_Bot_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Store Pages\Settings\Store_Settings_Data_Loaded_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

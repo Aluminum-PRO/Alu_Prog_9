@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Alu_Prog_9.Classes;
+using Alu_Prog_9.Pages.Store_Pages.Admins.Update;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +22,21 @@ namespace Alu_Prog_9.User_Control
     /// </summary>
     public partial class Update_App_But_UC : UserControl
     {
-        int id, have_application;
-        double size;
-        string type, name, program_name, version, TPK_version, reference, TPK_reference;
+        private int id;
+        private double size, price;
+        private string type, name, program_name, version, TPK_version, reference, TPK_reference, description, shortcut_description, hot_key;
+        private BitmapImage image, image_1, image_2, image_3, image_4;
 
-        public Update_App_But_UC(int id, string type, double size, string name, string program_name, BitmapImage image, BitmapImage image_1, BitmapImage image_2, BitmapImage image_3, BitmapImage image_4, string description, string shortcut_description, string hot_key, int have_application, double price, string version, string TPK_version, string reference, string TPK_reference)
+        public Update_App_But_UC(int id, string type, double size, string name, string program_name, BitmapImage image, BitmapImage image_1, BitmapImage image_2, BitmapImage image_3, BitmapImage image_4, string description, string shortcut_description, string hot_key, double price, string version, string TPK_version, string reference, string TPK_reference)
         {
             InitializeComponent();
-            this.name = name; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.size = size;
+            this.id = id; this.type = type; this.name = name; this.program_name = program_name; this.image = image; this.image_1 = image_1; this.image_2 = image_2; this.image_3 = image_3; this.image_4 = image_4; this.description = description; this.shortcut_description = shortcut_description; this.hot_key = hot_key; this.price = price; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.size = size;
             App_But.Content = $"{name} | Ver.{version} | TPK Ver.{TPK_version}";
         }
 
         private void App_But_Click(object sender, RoutedEventArgs e)
         {
-
+            StaticVars.Store_Admin_Frame.NavigationService.Navigate(new Update_App_Page(id, type, size, name, program_name, image, image_1, image_2, image_3, image_4, description, shortcut_description, hot_key, price, version, TPK_version, reference, TPK_reference));
         }
     }
 }

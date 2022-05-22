@@ -42,6 +42,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
         private int application_id, app_have_application;
         private double app_size;
         private string app_type, app_install, app_name, app_program_name, app_shortcut_description, app_hot_key, installed_app_version, app_version, app_reference, name, surname, comment_text, send_comment_text, time_send;
+
+        
         BitmapImage app_image, image_1, image_2, image_3, image_4;
 
         public Application_Box_Page(int _id, string _type, double _size, string _name, string _program_name, BitmapImage _image, BitmapImage _image_1, BitmapImage _image_2, BitmapImage _image_3, BitmapImage _image_4, string _description, string _shortcut_description, string _hot_key, int _have_application, double _price, string _version, string _reference)
@@ -56,7 +58,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
             app_program_name = _program_name;
             Name_Application.Text = _name.ToString()/*.Replace(@"_", " ")*/;
             app_image = _image; image_1 = _image_1; image_2 = _image_2; image_3 = _image_3; image_4 = _image_4;
-            Application_Image_Main.Source = _image; Application_Image_1.Source = _image_1; Application_Image_2.Source = _image_2; Application_Image_3.Source = _image_3; Application_Image_4.Source = _image_4;
+            Application_Image_Main.Source = _image; Application_Image_Main_Mini.Source = _image; Application_Image_1.Source = _image_1; Application_Image_2.Source = _image_2; Application_Image_3.Source = _image_3; Application_Image_4.Source = _image_4;
             Description_Application.Text = _description;
             app_shortcut_description = _shortcut_description;
             app_hot_key = _hot_key;
@@ -180,6 +182,11 @@ namespace Alu_Prog_9.Pages.Store_Pages.Applications
             StaticVars.Store_Home_But.IsChecked = false;
             StaticVars.Store_Library_But.IsChecked = true;
             StaticVars.Store_Frame.NavigationService.Navigate(new Store_Library_Page());
+        }
+
+        private void Open_Application_Image_Main_But_Click(object sender, RoutedEventArgs e)
+        {
+            Application_Image_Main.Source = app_image;
         }
 
         private void Open_Application_Image_1_But_Click(object sender, RoutedEventArgs e)

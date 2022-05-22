@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Alu_Prog_9.Pages.Store_Pages.Admins.Update"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="870"
+      d:DesignHeight="600" d:DesignWidth="770"
       Title="Store_Admin_Update_Page" Loaded="Page_Loaded">
 
     <Grid>

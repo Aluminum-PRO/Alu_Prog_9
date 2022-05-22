@@ -21,10 +21,15 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
             Store_Settings_Frame.NavigationService.Navigate(new Store_Settings_Update_Page());
         }
 
+        private void Store_Settings_Data_Loaded_But_Click(object sender, RoutedEventArgs e)
+        {
+            Store_Settings_Frame.NavigationService.Navigate(new Store_Settings_Data_Loaded_Page());
+        }
+
         private void Store_Settings_Al_Bot_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Settings_Al_Bot_But.IsChecked == false)
-            MessageBox.Show("Бота пока что не завезли!");
+            MessageBox.Show("Привязку к боту пока что не завезли!");
         }
 
         private void Store_Settings_Errors_But_Click(object sender, RoutedEventArgs e)
@@ -40,6 +45,5 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
             }
             Store_Settings_Frame.NavigationService.RemoveBackEntry();
         }
-
     }
 }

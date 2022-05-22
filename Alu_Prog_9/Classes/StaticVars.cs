@@ -21,16 +21,17 @@ namespace Alu_Prog_9.Classes
         public static List<DataBase> Application = new List<DataBase>();
         public static List<DataBase> Soft = new List<DataBase>();
 
-        public static MainWindow MainWindow;
-
-        public static Frame Main_Frame, Store_Frame, Store_Home_Frame, Store_Library_Frame, Store_Soft_Frame;
+        public static int Load_Soft_Info;
+        //public static string ;
 
         public static int Count_Update, Count_Update_Al, Count_Soft, Gender = 0, Soft_License, Bot_License;
-
         public static string Login, Rec_Email;
-
         public static bool Loading_Data = true, Logo_Animation = true;
 
+        public static MainWindow MainWindow;
+
+        public static Frame Main_Frame, Store_Frame, Store_Home_Frame, Store_Library_Frame, Store_Soft_Frame, Store_Admin_Frame;
+        
         public static Grid Ellepse_Grid;
         public static TextBlock Ellipse_text;
 

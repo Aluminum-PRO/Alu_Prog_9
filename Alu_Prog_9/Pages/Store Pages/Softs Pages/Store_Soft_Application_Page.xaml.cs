@@ -1,6 +1,7 @@
 ﻿using Alu_Prog_9.Classes;
 using Alu_Prog_9.User_Control;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
@@ -42,6 +43,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Softs_Pages
                     }
                 }
             }
+            if (StaticVars.Count_Soft == 0)
+            { MessageBox.Show(" Для отображения софта необходимо перейти в раздел настроек \"Загрузка данных\", и включить \"Подгружать информацию о стороннем софте при запуске Al-Store\". \n После чего перезапустите \"Al-Store\"", "Al-Store", MessageBoxButton.OK, MessageBoxImage.Information); }
             StaticVars.Count_Soft_Text_box.Text = "Софт не от Aluminum-Company: " + StaticVars.Count_Soft.ToString();
         }
     }

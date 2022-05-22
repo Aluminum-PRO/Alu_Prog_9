@@ -1,4 +1,5 @@
-﻿using Alu_Prog_9.Pages.Store_Pages.Admins.Update;
+﻿using Alu_Prog_9.Classes;
+using Alu_Prog_9.Pages.Store_Pages.Admins.Update;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -13,6 +14,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins
         public Store_Admin_Page()
         {
             InitializeComponent();
+            StaticVars.Store_Admin_Frame = Store_Admin_Frame;
             Store_Admin_Frame.Content = new Store_Admin_Update_Page();
         }
 

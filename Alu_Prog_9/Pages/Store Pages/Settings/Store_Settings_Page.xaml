@@ -38,6 +38,14 @@
                 IsChecked="True"
                 Click="Store_Settings_Update_But_Click"/>
             <RadioButton
+                x:Name="Store_Settings_Data_Loaded_But"
+                Content="Загрузка данных"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_Settings_Data_Loaded_But_Click"/>
+            <RadioButton
                 x:Name="Store_Settings_Al_Bot_But"
                 Content="Al-Bot"
                 Height="50"
@@ -47,7 +55,7 @@
                 Click="Store_Settings_Al_Bot_But_Click"/>
             <RadioButton
                 x:Name="Store_Settings_Errors_But"
-                Content="Errors"
+                Content="Ошибки"
                 Height="50"
                 Foreground="White"
                 FontSize="14"

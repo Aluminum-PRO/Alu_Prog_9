@@ -1,31 +1,18 @@
 ﻿using Alu_Prog_9.Classes;
 using Alu_Prog_9.MySql_Services;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Alu_Prog_9.Pages;
-using Alu_Prog_9.Pages.Store_Pages;
+using Alu_Prog_9.Pages.Bot_Pages;
+using Alu_Prog_9.Pages.Store_Pages.Accounts;
+using Alu_Prog_9.Pages.Store_Pages.Admins;
+using Alu_Prog_9.Pages.Store_Pages.Baskets;
 using Alu_Prog_9.Pages.Store_Pages.Home_Library;
 using Alu_Prog_9.Pages.Store_Pages.News;
 using Alu_Prog_9.Pages.Store_Pages.Settings;
-using Alu_Prog_9.Pages.Store_Pages.Baskets;
-using Alu_Prog_9.Pages.Store_Pages.Admins;
 using Alu_Prog_9.Pages.Store_Pages.Softs_Pages;
-using Alu_Prog_9.Pages.Store_Pages.Accounts;
-using Alu_Prog_9.Pages.Bot_Pages;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace Alu_Prog_9.Pages
 {
@@ -51,7 +38,15 @@ namespace Alu_Prog_9.Pages
             StaticVars.Store_Home_But = Store_Home_But;
             StaticVars.Store_Library_But = Store_Library_But;
 
-            Store_Frame.Content = new Store_Home_Page();
+            if (Properties.Settings.Default.First_Started == 0)
+            { 
+                Store_Frame.Content = new Store_News_Page();
+                Store_News_But.IsChecked = true;
+                Properties.Settings.Default.First_Started = 1; 
+                Properties.Settings.Default.Save(); 
+            }
+            else
+                Store_Frame.Content = new Store_Home_Page();
             if (Properties.Settings.Default.User_Login.ToLower() == "admin")
             {
                 Store_Admin_But.Visibility = Visibility.Visible;
@@ -86,37 +81,37 @@ namespace Alu_Prog_9.Pages
         private void Store_Home_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Home_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_Home_Page());
+            Store_Frame.NavigationService.Navigate(new Store_Home_Page());
         }
 
         private void Store_News_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_News_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_News_Page());
+            Store_Frame.NavigationService.Navigate(new Store_News_Page());
         }
 
         private void Store_Library_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Library_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_Library_Page());
+            Store_Frame.NavigationService.Navigate(new Store_Library_Page());
         }
 
         private void Store_Settings_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Settings_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_Settings_Page());
+            Store_Frame.NavigationService.Navigate(new Store_Settings_Page());
         }
 
         private void Store_Basket_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Basket_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_Basket_Page());
+            Store_Frame.NavigationService.Navigate(new Store_Basket_Page());
         }
 
         private void Store_Admin_But_Click(object sender, RoutedEventArgs e)
         {
             //if (Store_Admin_But.IsChecked == false)
-                Store_Frame.NavigationService.Navigate(new Store_Admin_Page());
+            Store_Frame.NavigationService.Navigate(new Store_Admin_Page());
         }
 
         private void Store_Soft_But_Click(object sender, RoutedEventArgs e)

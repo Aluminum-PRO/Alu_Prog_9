@@ -23,6 +23,31 @@ namespace Alu_Prog_9.Pages.Store_Pages.News
         public Store_News_Page()
         {
             InitializeComponent();
+            Store_News_Frame.Content = new Store_News_Update_History_Page();
+        }
+
+        private void Store_News_Update_History_But_Click(object sender, RoutedEventArgs e)
+        {
+            Store_News_Frame.NavigationService.Navigate(new Store_News_Update_History_Page());
+        }
+
+        private void Store_News_News_But_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Store_News_Users_But_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Store_News_Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            while (Store_News_Frame.NavigationService.CanGoBack)
+            {
+                Store_News_Frame.NavigationService.RemoveBackEntry();
+            }
+            Store_News_Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

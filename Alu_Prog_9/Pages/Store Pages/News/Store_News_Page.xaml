@@ -10,6 +10,49 @@
       Title="Store_News_Page">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="Store_News_Frame" Grid.Row="1" Grid.Column="2" Navigated="Store_News_Frame_Navigated"></Frame>
+        <TextBlock Text="Новости"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="White"
+                   FontSize="15"
+                   Margin="20 0 0 0"
+                   FontFamily="/Fonts/#Poppins"/>
+        <StackPanel Grid.Row="1">
+            <RadioButton
+                x:Name="Store_News_Update_History_But"
+                Content="Что нового"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                IsChecked="True"
+                Click="Store_News_Update_History_But_Click"/>
+            <RadioButton
+                x:Name="Store_News_News_But"
+                Content="Новости"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_News_News_But_Click" IsEnabled="False"/>
+            <RadioButton
+                x:Name="Store_News_Users_But"
+                Content="Пользователи"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource Menu_Button_Theme}"
+                Click="Store_News_Users_But_Click" IsEnabled="False"/>
+        </StackPanel>
     </Grid>
 </Page>

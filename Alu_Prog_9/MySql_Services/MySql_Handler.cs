@@ -31,15 +31,6 @@ namespace Alu_Prog_9.MySql_Services
         string program_name, version, reference;
         BitmapImage image, image_1, image_2, image_3, image_4;
 
-        public void Loaded_Connections_And_Loaded_Data()
-        {
-            Getting_User_Data();
-            Checking_For_Account_Creation();
-            Getting_User_Properties();
-            Get_Update_Information_Application();
-            Download_DB();
-        }
-
         public void Login(string Login_User, string Password_User, out string Login_Bool)
         {
             My_Con = new MySql_Connector(); /*My_Hand = new MySql_Handler();*/
@@ -109,145 +100,13 @@ namespace Alu_Prog_9.MySql_Services
             }
         }
 
-        public void Download_DB()
-        {
-            My_Con = new MySql_Connector();
-
-            adapter = new MySqlDataAdapter();
-            command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login", My_Con.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-            My_Con.openConnection();
-
-            reader = null;
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                byte[] blob = (byte[])(reader["image_main"]);
-                using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
-                {
-                    BitmapImage imageSource = new BitmapImage();
-                    imageSource.BeginInit();
-                    imageSource.StreamSource = ms;
-                    imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                    imageSource.EndInit();
-                    image = imageSource;
-                }
-                for (int i = 1; i < 5; i++)
-                {
-                    blob = (byte[])(reader["image_" + i]);
-
-                    using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
-                    {
-                        BitmapImage imageSource = new BitmapImage();
-                        imageSource.BeginInit();
-                        imageSource.StreamSource = ms;
-                        imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                        imageSource.EndInit();
-                        if (i == 1)
-                        {
-                            image_1 = imageSource;
-                        }
-                        else if (i == 2)
-                        {
-                            image_2 = imageSource;
-                        }
-                        else if (i == 3)
-                        {
-                            image_3 = imageSource;
-                        }
-                        else if (i == 4)
-                        {
-                            image_4 = imageSource;
-                        }
-                    }
-                }
-                if (Properties.Settings.Default.Edition == "'Standart'")
-                {
-                    version = reader["version"].ToString();
-                    reference = reader["reference"].ToString();
-
-                }
-                else if (Properties.Settings.Default.Edition == "'TPK'")
-                {
-                    version = reader["version_TPK_Ed"].ToString();
-                    reference = reader["reference_TPK_Ed"].ToString();
-                }
-                program_name = reader["program_name"].ToString();
-
-                try
-                { have_application = Convert.ToInt32(reader[program_name]); }
-                catch
-                { have_application = 0; }
-                StaticVars.Application.Add(new StaticVars.DataBase()
-                {
-                    id = Convert.ToInt32(reader["id"]),
-                    type = reader["type"].ToString(),
-                    size = Convert.ToDouble(reader["size"]),
-                    name = reader["name"].ToString(),
-                    program_name = reader["program_name"].ToString(),
-                    image = this.image,
-                    image_1 = this.image_1,
-                    image_2 = this.image_2,
-                    image_3 = this.image_3,
-                    image_4 = this.image_4,
-                    version = this.version,
-                    reference = this.reference,
-                    have_application = this.have_application,
-                    description = reader["description"].ToString(),
-                    shortcut_description = reader["shortcut_description"].ToString(),
-                    hot_key = reader["hot_key"].ToString(),
-                    price = Convert.ToDouble(reader["price"]),
-                });
-            }
-            My_Con.closeConnection();
-
-            My_Con = new MySql_Connector();
-
-            adapter = new MySqlDataAdapter();
-            command = new MySqlCommand("SELECT * FROM `Tab_Soft_Db` ORDER BY soft_name asc", My_Con.getConnection());
-
-            My_Con.openConnection();
-
-            reader = null;
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                byte[] blob = (Byte[])reader["soft_image"];
-                using (MemoryStream ms = new MemoryStream(blob))
-                {
-                    var imageSource = new BitmapImage();
-                    imageSource.BeginInit();
-                    imageSource.StreamSource = ms;
-                    imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                    imageSource.EndInit();
-                    image = imageSource;
-                }
-                StaticVars.Soft.Add(new StaticVars.DataBase()
-                {
-                    id = Convert.ToInt32(reader["soft_id"]),
-                    file_type = reader["soft_file_type"].ToString(),
-                    file_size = Convert.ToDouble(reader["soft_file_size"]),
-                    name = reader["soft_name"].ToString(),
-                    program_name = reader["soft_program_name"].ToString(),
-                    pass = reader["soft_pass"].ToString(),
-                    image = this.image,
-                    reference = reader["soft_reference"].ToString()
-                });
-                StaticVars.Count_Soft++;
-            }
-            My_Con.closeConnection();
-        }
-
         public void Getting_Data()
         {
             My_Con = new MySql_Connector();
 
             adapter = new MySqlDataAdapter();
 
-            command = new MySqlCommand("SELECT * FROM `Tab_Accounts_Db` WHERE `id` = 1", My_Con.getConnection());
+            command = new MySqlCommand("SELECT * FROM `Tab_Accounts_Db` WHERE `id` = 1; SELECT * FROM `Tab_Al_Store_Db` WHERE `id` = 2; SELECT * FROM `Tab_Al_Store_Db` WHERE `id` = 3", My_Con.getConnection());
 
             My_Con.openConnection();
 
@@ -257,6 +116,42 @@ namespace Alu_Prog_9.MySql_Services
             while (reader.Read())
             {
                 Properties.Settings.Default.Pass_for_Email = reader["pass_for_email"].ToString();
+            }
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    if (Properties.Settings.Default.Edition == "'Standart'")
+                    {
+                        Properties.Settings.Default.New_Ver_Store = reader["version"].ToString();
+                    }
+                    else if (Properties.Settings.Default.Edition == "'TPK'")
+                    {
+                        Properties.Settings.Default.New_Ver_Store = reader["TPK_version"].ToString();
+                    }
+                }
+            }
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    if (Properties.Settings.Default.Edition == "'Standart'")
+                    {
+                        Properties.Settings.Default.New_Ver_Updater = reader["version"].ToString();
+                    }
+                    else if (Properties.Settings.Default.Edition == "'TPK'")
+                    {
+                        Properties.Settings.Default.New_Ver_Updater = reader["TPK_version"].ToString();
+                    }
+                }
+            }
+            if (Properties.Settings.Default.Ver_Store != Properties.Settings.Default.New_Ver_Store)  //TODO: Добавить проверку на то, новее ли на сервере версия
+            {
+                StaticVars.Count_Update_Al++;
+            }
+            else if (Properties.Settings.Default.Ver_Updater != Properties.Settings.Default.New_Ver_Updater)
+            {
+                StaticVars.Count_Update_Al++;
             }
 
             My_Con.closeConnection();
@@ -316,8 +211,210 @@ namespace Alu_Prog_9.MySql_Services
                 Properties.Settings.Default.User_Birthday_Year = Convert.ToInt32(reader["birthday_year"]);
                 Properties.Settings.Default.User_Mailing = Convert.ToInt32(reader["mailing"]);
             }
-
             My_Con.closeConnection();
+
+            Tab_Al_Store_Properties_Db = new DataTable(); Tab_Programs_Db = new DataTable();
+
+            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Properties_Db` WHERE `login` = @login", My_Con.getConnection());
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+
+            adapter.SelectCommand = command;
+            adapter.Fill(Tab_Al_Store_Properties_Db);
+
+            if (Tab_Al_Store_Properties_Db.Rows.Count == 0)
+            {
+                command = new MySqlCommand("INSERT INTO `Tab_Al_Store_Properties_Db` (`id`, `login`) " +
+                    "VALUES (@id, @login)", My_Con.getConnection());
+
+                command.Parameters.Add("@id", MySqlDbType.Int32).Value = Properties.Settings.Default.User_Id;
+                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+                My_Con.openConnection();
+
+                if (command.ExecuteNonQuery() == 1)
+                { }
+                else
+                { }
+
+                My_Con.closeConnection();
+            }
+
+            command = new MySqlCommand("SELECT * FROM `Tab_Programs_Db` WHERE `login` = @login", My_Con.getConnection());
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+
+            adapter.SelectCommand = command;
+            adapter.Fill(Tab_Programs_Db);
+
+            if (Tab_Programs_Db.Rows.Count == 0)
+            {
+                command = new MySqlCommand("INSERT INTO `Tab_Programs_Db` (`id`, `login`, `pass`) " +
+                    "VALUES (@id, @login, @password)", My_Con.getConnection());
+
+                command.Parameters.Add("@id", MySqlDbType.Int32).Value = Properties.Settings.Default.User_Id;
+                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+                command.Parameters.Add("@password", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Password;
+                My_Con.openConnection();
+
+                if (command.ExecuteNonQuery() == 1)
+                { }
+                else
+                { }
+
+                My_Con.closeConnection();
+            }
+
+            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Properties_Db` WHERE `login` = @login; SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login; SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login; SELECT * FROM `Tab_Soft_Db` ORDER BY soft_name asc", My_Con.getConnection());
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+            My_Con.openConnection();
+
+            reader = null;
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Properties.Settings.Default.Start_Creating_Shortcut = Convert.ToInt32(reader["Start_Creating_Shortcut"]);
+                StaticVars.Load_Soft_Info = Convert.ToInt32(reader["Load_Soft_Info"]);
+            }
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    app_id = Convert.ToInt32(reader["id"]);
+                    app_type = reader["type"].ToString();
+                    app_name = reader["name"].ToString();
+                    app_program_name = reader["program_name"].ToString();
+                    if (Properties.Settings.Default.Edition == "'Standart'")
+                    {
+                        app_version = reader["version"].ToString();
+                    }
+                    else if (Properties.Settings.Default.Edition == "'TPK'")
+                    {
+                        app_version = reader["version_TPK_Ed"].ToString();
+                    }
+
+                    try
+                    { app_have_application = Convert.ToInt32(reader[app_program_name]); }
+                    catch
+                    { app_have_application = 0; }
+
+                    if (app_have_application == 1)
+                    {
+                        handler = new Handler();
+                        handler.Get_Update_Information_Loaded(app_id, app_type, app_name, app_program_name, app_version);
+                    }
+                }
+            }
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    byte[] blob = (byte[])(reader["image_main"]);
+                    using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
+                    {
+                        BitmapImage imageSource = new BitmapImage();
+                        imageSource.BeginInit();
+                        imageSource.StreamSource = ms;
+                        imageSource.CacheOption = BitmapCacheOption.OnLoad;
+                        imageSource.EndInit();
+                        image = imageSource;
+                    }
+                    for (int i = 1; i < 5; i++)
+                    {
+                        blob = (byte[])(reader["image_" + i]);
+
+                        using (System.IO.MemoryStream ms = new System.IO.MemoryStream(blob))
+                        {
+                            BitmapImage imageSource = new BitmapImage();
+                            imageSource.BeginInit();
+                            imageSource.StreamSource = ms;
+                            imageSource.CacheOption = BitmapCacheOption.OnLoad;
+                            imageSource.EndInit();
+                            if (i == 1)
+                            {
+                                image_1 = imageSource;
+                            }
+                            else if (i == 2)
+                            {
+                                image_2 = imageSource;
+                            }
+                            else if (i == 3)
+                            {
+                                image_3 = imageSource;
+                            }
+                            else if (i == 4)
+                            {
+                                image_4 = imageSource;
+                            }
+                        }
+                    }
+                    if (Properties.Settings.Default.Edition == "'Standart'")
+                    {
+                        version = reader["version"].ToString();
+                        reference = reader["reference"].ToString();
+
+                    }
+                    else if (Properties.Settings.Default.Edition == "'TPK'")
+                    {
+                        version = reader["version_TPK_Ed"].ToString();
+                        reference = reader["reference_TPK_Ed"].ToString();
+                    }
+                    program_name = reader["program_name"].ToString();
+
+                    try
+                    { have_application = Convert.ToInt32(reader[program_name]); }
+                    catch
+                    { have_application = 0; }
+                    StaticVars.Application.Add(new StaticVars.DataBase()
+                    {
+                        id = Convert.ToInt32(reader["id"]),
+                        type = reader["type"].ToString(),
+                        size = Convert.ToDouble(reader["size"]),
+                        name = reader["name"].ToString(),
+                        program_name = reader["program_name"].ToString(),
+                        image = this.image,
+                        image_1 = this.image_1,
+                        image_2 = this.image_2,
+                        image_3 = this.image_3,
+                        image_4 = this.image_4,
+                        version = this.version,
+                        reference = this.reference,
+                        have_application = this.have_application,
+                        description = reader["description"].ToString(),
+                        shortcut_description = reader["shortcut_description"].ToString(),
+                        hot_key = reader["hot_key"].ToString(),
+                        price = Convert.ToDouble(reader["price"]),
+                    });
+                }
+            }
+            if (reader.NextResult() && StaticVars.Load_Soft_Info == 1)
+            {
+                while (reader.Read())
+                {
+                    byte[] blob = (Byte[])reader["soft_image"];
+                    using (MemoryStream ms = new MemoryStream(blob))
+                    {
+                        var imageSource = new BitmapImage();
+                        imageSource.BeginInit();
+                        imageSource.StreamSource = ms;
+                        imageSource.CacheOption = BitmapCacheOption.OnLoad;
+                        imageSource.EndInit();
+                        image = imageSource;
+                    }
+                    StaticVars.Soft.Add(new StaticVars.DataBase()
+                    {
+                        id = Convert.ToInt32(reader["soft_id"]),
+                        file_type = reader["soft_file_type"].ToString(),
+                        file_size = Convert.ToDouble(reader["soft_file_size"]),
+                        name = reader["soft_name"].ToString(),
+                        program_name = reader["soft_program_name"].ToString(),
+                        pass = reader["soft_pass"].ToString(),
+                        image = this.image,
+                        reference = reader["soft_reference"].ToString()
+                    });
+                    StaticVars.Count_Soft++;
+                }
+            }
+            My_Con.closeConnection();
+
             Properties.Settings.Default.Save();
 
             if (!Directory.Exists(Properties.Settings.Default.Path_Programs))
@@ -360,86 +457,6 @@ namespace Alu_Prog_9.MySql_Services
             My_Con.closeConnection();
         }
 
-        public void Get_Update_Information_Application()
-        {
-            My_Con = new MySql_Connector();
-
-            adapter = new MySqlDataAdapter();
-            command = new MySqlCommand("SELECT * FROM `Tab_Applications_Db`, `Tab_Programs_Db` WHERE Tab_Programs_Db.login = @login", My_Con.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-            My_Con.openConnection();
-
-            reader = null;
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                app_id = Convert.ToInt32(reader["id"]);
-                app_type = reader["type"].ToString();
-                app_name = reader["name"].ToString();
-                app_program_name = reader["program_name"].ToString();
-                if (Properties.Settings.Default.Edition == "'Standart'")
-                {
-                    app_version = reader["version"].ToString();
-                }
-                else if (Properties.Settings.Default.Edition == "'TPK'")
-                {
-                    app_version = reader["version_TPK_Ed"].ToString();
-                }
-
-                try
-                { app_have_application = Convert.ToInt32(reader[app_program_name]); }
-                catch
-                { app_have_application = 0; }
-
-                if (app_have_application == 1)
-                {
-                    handler = new Handler();
-                    handler.Get_Update_Information_Loaded(app_id, app_type, app_name, app_program_name, app_version);
-                }
-            }
-            My_Con.closeConnection();
-        }
-
-        public void Get_Update_Information_Al_Store()
-        {
-            My_Con = new MySql_Connector();
-
-            adapter = new MySqlDataAdapter();
-            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Db` WHERE `id` = 1", My_Con.getConnection());
-
-            My_Con.openConnection();
-
-            reader = null;
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                if (Properties.Settings.Default.Edition == "'Standart'")
-                {
-                    Properties.Settings.Default.New_Ver_Store = reader["version_store"].ToString();
-                    Properties.Settings.Default.New_Ver_Updater = reader["version_updater"].ToString();
-                }
-                else if (Properties.Settings.Default.Edition == "'TPK'")
-                {
-                    Properties.Settings.Default.New_Ver_Store = reader["version_store_TPK_Ed"].ToString();
-                    Properties.Settings.Default.New_Ver_Updater = reader["version_updater_TPK_Ed"].ToString();
-                }
-            }
-            My_Con.closeConnection();
-
-            if (Properties.Settings.Default.Ver_Store != Properties.Settings.Default.New_Ver_Store)  //TODO: Добавить проверку на то, новее ли на сервере версия
-            {
-                StaticVars.Count_Update_Al++;
-            }
-            else if (Properties.Settings.Default.Ver_Updater != Properties.Settings.Default.New_Ver_Updater)
-            {
-                StaticVars.Count_Update_Al++;
-            }
-
-        }
-
         public void Get_Application(string program_name, out string Bool)
         {
             My_Con = new MySql_Connector();
@@ -458,83 +475,6 @@ namespace Alu_Prog_9.MySql_Services
             {
                 Bool = "False";
                 MessageBox.Show(" Не удалось добавить программу в вашу библиотеку. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
-            }
-
-            My_Con.closeConnection();
-        }
-
-        public void Checking_For_Account_Creation()
-        {
-            Tab_Al_Store_Properties_Db = new DataTable();
-
-            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Properties_Db` WHERE `login` = @login", My_Con.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-            adapter.SelectCommand = command;
-            adapter.Fill(Tab_Al_Store_Properties_Db);
-
-            if (Tab_Al_Store_Properties_Db.Rows.Count == 0)
-            {
-                command = new MySqlCommand("INSERT INTO `Tab_Al_Store_Properties_Db` (`id`, `login`) " +
-                    "VALUES (@id, @login)", My_Con.getConnection());
-
-                command.Parameters.Add("@id", MySqlDbType.Int32).Value = Properties.Settings.Default.User_Id;
-                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-                My_Con.openConnection();
-
-                if (command.ExecuteNonQuery() == 1)
-                { }
-                else
-                { }
-
-                My_Con.closeConnection();
-            }
-
-            Properties.Settings.Default.Save();
-
-            Tab_Programs_Db = new DataTable();
-
-            command = new MySqlCommand("SELECT * FROM `Tab_Programs_Db` WHERE `login` = @login", My_Con.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-            adapter.SelectCommand = command;
-            adapter.Fill(Tab_Programs_Db);
-
-            if (Tab_Programs_Db.Rows.Count == 0)
-            {
-                command = new MySqlCommand("INSERT INTO `Tab_Programs_Db` (`id`, `login`, `pass`) " +
-                    "VALUES (@id, @login, @password)", My_Con.getConnection());
-
-                command.Parameters.Add("@id", MySqlDbType.Int32).Value = Properties.Settings.Default.User_Id;
-                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-                command.Parameters.Add("@password", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Password;
-                My_Con.openConnection();
-
-                if (command.ExecuteNonQuery() == 1)
-                { }
-                else
-                { }
-
-                My_Con.closeConnection();
-            }
-        }
-
-        public void Getting_User_Properties()
-        {
-            My_Con = new MySql_Connector();
-            adapter = new MySqlDataAdapter();
-
-            command = new MySqlCommand("SELECT * FROM `Tab_Al_Store_Properties_Db` WHERE `login` = @login", My_Con.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-
-            My_Con.openConnection();
-
-            reader = null;
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Properties.Settings.Default.Start_Creating_Shortcut = Convert.ToInt32(reader["Start_Creating_Shortcut"]);
             }
 
             My_Con.closeConnection();
@@ -569,24 +509,22 @@ namespace Alu_Prog_9.MySql_Services
             My_Con.closeConnection();
         }
 
-        public void Save_Start_Creating_Shortcut_Properties()
+        public void Set_Properties(string Prop, int Set, out bool Result)
         {
             My_Con = new MySql_Connector();
-            command = new MySqlCommand("UPDATE `Tab_Al_Store_Properties_Db` SET `Start_Creating_Shortcut` = @Start_Creating_Shortcut" +
+            command = new MySqlCommand($"UPDATE `Tab_Al_Store_Properties_Db` SET `{Prop}` = @Prop" +
                 " WHERE `Tab_Al_Store_Properties_Db`.`login` = @login",
                 My_Con.getConnection());
 
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
-            command.Parameters.Add("@Start_Creating_Shortcut", MySqlDbType.Int32).Value = Properties.Settings.Default.Start_Creating_Shortcut;
+            command.Parameters.Add("@Prop", MySqlDbType.Int32).Value = Set;
 
             My_Con.openConnection();
 
             if (command.ExecuteNonQuery() == 1)
-            { }
+            { Result = true; }
             else
-            {
-                MessageBox.Show(" Не удалось обновить данные. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
-            }
+            { Result = false; }
 
             My_Con.closeConnection();
         }

@@ -26,16 +26,11 @@ namespace Alu_Prog_9
             InitializeComponent();
             Process[] processList = Process.GetProcessesByName("Al-Store");
             if (processList.Length > 1)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                J();
-            }
+            { Environment.Exit(0); }
+            else { Load(); }
         }
 
-        private async void J()
+        private void Load()
         {
             Thread thread = new Thread(() =>
             {
@@ -134,11 +129,10 @@ namespace Alu_Prog_9
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
-            My_Hand.Get_Update_Information_Al_Store();
 
             if (Properties.Settings.Default.Authorization == 1)
             {
-                My_Hand.Loaded_Connections_And_Loaded_Data();
+                My_Hand.Getting_User_Data();
             }
             else if (Properties.Settings.Default.Authorization == 0)
             {
@@ -151,7 +145,7 @@ namespace Alu_Prog_9
 
                     if (Restoring_Authorization_Bool == "True")
                     {
-                        My_Hand.Loaded_Connections_And_Loaded_Data();
+                        My_Hand.Getting_User_Data();
 
                         //TODO: Переделать окно уведомления о восстановлении активации
                         System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
@@ -180,7 +174,17 @@ namespace Alu_Prog_9
                     {
                         Properties.Settings.Default.Start_Creating_Shortcut = 1;
                         Properties.Settings.Default.Save();
-                        My_Hand.Save_Start_Creating_Shortcut_Properties();
+                        My_Hand.Set_Properties("Start_Creating_Shortcut", Properties.Settings.Default.Start_Creating_Shortcut, out bool Result);
+                        if (Result == true)
+                        {  }
+                        else if (Result == false)
+                        {
+                            if (Properties.Settings.Default.Start_Creating_Shortcut == 0)
+                            { Properties.Settings.Default.Start_Creating_Shortcut = 1;}
+                            else if (Properties.Settings.Default.Start_Creating_Shortcut == 1)
+                            { Properties.Settings.Default.Start_Creating_Shortcut = 0;}
+                            MessageBox.Show(" Не удалось обновить данные. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
+                        }
                         //TODO: Есть вопросы к функции "не спаршивать больше про создание ярлыка"
                     }
                 }
@@ -208,11 +212,6 @@ namespace Alu_Prog_9
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            J();
         }
     }
 }

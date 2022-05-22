@@ -12,12 +12,12 @@
     <Viewbox Stretch="Uniform">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="815*"/>
+                <ColumnDefinition Width="815"/>
                 <ColumnDefinition Width="170*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="618"/>
+                <RowDefinition Height="670"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -25,29 +25,37 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="Name_Application" Text="Название" FontSize="26" Foreground="White" Width="380" Height="40" Margin="40 5 0 0" TextAlignment="Left"/>
                 </StackPanel>
-                <Image x:Name="Application_Image_Main" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="710" Height="430" Margin="5 10 5 8"/>
-                <StackPanel Orientation="Horizontal">
-                    <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
-                        <Button x:Name="Open_Application_Image_1_But" Click="Open_Application_Image_1_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="105" Width="155">
-                            <Image x:Name="Application_Image_1" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="150" Height="100" />
-                        </Button>
-                    </Border>
-                    <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
-                        <Button x:Name="Open_Application_Image_2_But" Click="Open_Application_Image_2_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="105" Width="155">
-                            <Image x:Name="Application_Image_2" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="150" Height="100" />
-                        </Button>
-                    </Border>
-                    <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
-                        <Button x:Name="Open_Application_Image_3_But" Click="Open_Application_Image_3_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="105" Width="155">
-                            <Image x:Name="Application_Image_3" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="150" Height="100" />
-                        </Button>
-                    </Border>
-                    <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
-                        <Button x:Name="Open_Application_Image_4_But" Click="Open_Application_Image_4_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="105" Width="155">
-                            <Image x:Name="Application_Image_4" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="150" Height="100" />
-                        </Button>
-                    </Border>
-                </StackPanel>
+                <Image x:Name="Application_Image_Main" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="710" Height="450" Margin="5 10 5 8"/>
+
+                <ScrollViewer Margin="0 0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" CanContentScroll="True">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
+                            <Button x:Name="Open_Application_Image_Main_But" Click="Open_Application_Image_Main_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="120" Width="170">
+                                <Image x:Name="Application_Image_Main_Mini" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="140" Height="100"/>
+                            </Button>
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
+                            <Button x:Name="Open_Application_Image_1_But" Click="Open_Application_Image_1_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="120" Width="170">
+                                <Image x:Name="Application_Image_1" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="100" Height="100"/>
+                            </Button>
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
+                            <Button x:Name="Open_Application_Image_2_But" Click="Open_Application_Image_2_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="120" Width="170">
+                                <Image x:Name="Application_Image_2" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="100" Height="100"/>
+                            </Button>
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
+                            <Button x:Name="Open_Application_Image_3_But" Click="Open_Application_Image_3_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="120" Width="170">
+                                <Image x:Name="Application_Image_3" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="100" Height="100"/>
+                            </Button>
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="15" BorderBrush="Gray" BorderThickness="0.8" Margin="14 5" Padding="1">
+                            <Button x:Name="Open_Application_Image_4_But" Click="Open_Application_Image_4_But_Click" Style="{StaticResource MaterialDesignFlatButton}" Height="120" Width="170">
+                                <Image x:Name="Application_Image_4" Source="/Al-Store;component/Resources/Images/Comming Soon.png" Width="100" Height="100"/>
+                            </Button>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
 
             <StackPanel Grid.Row="0" Grid.Column="1" Margin="0 30 0 0">
