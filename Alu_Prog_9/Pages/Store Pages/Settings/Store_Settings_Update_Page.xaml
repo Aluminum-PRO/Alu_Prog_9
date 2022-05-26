@@ -11,44 +11,58 @@
 
     <Viewbox Stretch="Uniform">
         <Grid>
-            <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
-                <TextBlock Text="Окно обновления Al-Store:" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="200" Height="22" Margin="2,5,0,16" TextAlignment="Left" />
-                <Grid>
-                    <TextBlock Text="Al-Store:" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="70" Height="22" Margin="30 5 2 5" TextAlignment="Left" />
+            <StackPanel>
+                <TextBlock Text="Окно обновления Al-Store:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Width="200" Height="22" Margin="5,5,0,5" TextAlignment="Left"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Al-Store:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="30 5 2 5" TextAlignment="Left" />
                     <Border>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
                         </Border.Effect>
-                        <TextBlock Text="Требуется обновление" x:Name="Al_Update" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="170" Height="22" Margin="100 5 2 5" TextAlignment="Left" />
+                        <TextBlock Text="Требуется обновление" x:Name="Al_Update" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="10 5 2 5"/>
                     </Border>
-                </Grid>
+                </StackPanel>
                 <Border Background="Transparent" CornerRadius="8" BorderThickness="0.8" BorderBrush="Gray" Margin="2 0 2 8" Padding="0">
                     <StackPanel>
-                        <TextBlock Text="Установленная версия: " x:Name="Installed_Version_Al_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="22" Margin="10 2 2 0" TextAlignment="Left" />
-                        <TextBlock Text="Доступная версия: " x:Name="Server_Version_Al_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="22" Margin="10 0 2 2" TextAlignment="Left" />
-                        <TextBlock Text="Размер файла: " x:Name="Size_Al_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="22" Margin="10 10 2 0" TextAlignment="Left" />
-                        <TextBlock Text="Расположение файла: " x:Name="Location_Al_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="auto" Margin="10 0 2 2" TextAlignment="Left" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Установленная версия: " x:Name="Installed_Version_Al_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 2 2 0" TextAlignment="Left" />
+                            <TextBlock Text="Доступная версия: " x:Name="Server_Version_Al_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 0 2 2" TextAlignment="Left" />
+                        </StackPanel>
+                        
+                        <TextBlock Text="Размер файла: " x:Name="Size_Al_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 10 2 5" TextAlignment="Left" />
+                        <TextBlock Text="Расположение файла: " x:Name="Location_Al_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Width="370" Height="auto" Margin="10 0 2 2" TextAlignment="Left" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
 
-                <Grid>
-                    <TextBlock Text="Updater:" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="70" Height="22" Margin="30 5 2 5" TextAlignment="Left" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Updater:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="30 5 2 5" TextAlignment="Left" />
                     <Border>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
                         </Border.Effect>
-                        <TextBlock Text="Требуется обновление" x:Name="Up_Update" HorizontalAlignment="Left" FontSize="16" Foreground="White" Width="170" Height="22" Margin="100 5 2 5" TextAlignment="Left" />
+                        <TextBlock Text="Требуется обновление" x:Name="Up_Update" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="10 5 2 5" TextAlignment="Left" />
                     </Border>
-                </Grid>
+                </StackPanel>
                 <Border Background="Transparent" CornerRadius="8" BorderThickness="0.8" BorderBrush="Gray" Margin="2 0 2 5" Padding="0">
                     <StackPanel>
-                        <TextBlock Text="Установленная версия: " x:Name="Installed_Version_Up_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="370" Height="22" Margin="10 2 2 0" TextAlignment="Left" />
-                        <TextBlock Text="Доступная версия: " x:Name="Server_Version_Up_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="370" Height="22" Margin="10 0 2 2" TextAlignment="Left" />
-                        <TextBlock Text="Размер файла: " x:Name="Size_Up_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="22" Margin="10 10 2 0" TextAlignment="Left" />
-                        <TextBlock Text="Расположение файла: " x:Name="Location_Up_TextBlock" HorizontalAlignment="Left" FontSize="14" Foreground="White" Width="470" Height="auto" Margin="10 0 2 2" TextAlignment="Left" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Установленная версия: " x:Name="Installed_Version_Up_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 2 2 0" TextAlignment="Left" />
+                            <TextBlock Text="Доступная версия: " x:Name="Server_Version_Up_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 0 2 2" TextAlignment="Left" />
+                        </StackPanel>
+                        <TextBlock Text="Размер файла: " x:Name="Size_Up_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Margin="10 10 2 5" TextAlignment="Left" />
+                        <TextBlock Text="Расположение файла: " x:Name="Location_Up_TextBlock" HorizontalAlignment="Left" FontSize="10" Foreground="White" Width="370" Height="auto" Margin="10 0 2 2" TextAlignment="Left" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
-                <Button Content="Запустить обновление" x:Name="Start_Update_But" Height="30" Width="200" Margin="0 0 0 5" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Click="Start_Update_But_Click"/>
+                <TextBlock Text=" Настройки фоновой активности:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Width="200" Height="22" Margin="5,5,0,5" TextAlignment="Left"/>
+                <StackPanel x:Name="Auto_Update_StackPanel" Orientation="Horizontal" Margin="10 2">
+                    <CheckBox x:Name="Auto_Update_But" Style="{StaticResource MaterialDesignSwitchLightToggleButton}" Height="10" Width="20" Click="Auto_Update_But_Click"/>
+                    <TextBlock Text=" Автоматически обновлять Al-Store при выходе обновления" FontSize="10" TextAlignment="Left" Foreground="White"/>
+                </StackPanel>
+                <StackPanel x:Name="Update_Msg_StackPanel" Orientation="Horizontal" Margin="10 2">
+                    <CheckBox x:Name="Update_Msg_But" Style="{StaticResource MaterialDesignSwitchLightToggleButton}" Height="10" Width="20" Click="Update_Msg_But_Click"/>
+                    <TextBlock Text=" Уведомлять в фоновом режиме об обновлении" FontSize="10" TextAlignment="Left" Foreground="White"/>
+                </StackPanel>
+                <Button Content="Запустить обновление" x:Name="Start_Update_But" Margin="0 0 5 5" FontSize="12" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Click="Start_Update_But_Click"/>
             </StackPanel>
         </Grid>
 

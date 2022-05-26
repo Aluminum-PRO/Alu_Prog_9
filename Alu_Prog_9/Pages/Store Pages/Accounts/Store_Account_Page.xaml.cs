@@ -30,11 +30,16 @@ namespace Alu_Prog_9.Pages.Store_Pages.Accounts
 
         private void Store_Account_Frame_Navigated(object sender, NavigationEventArgs e)
         {
-            while (NavigationService.CanGoBack)
+            while (Store_Account_Frame.NavigationService.CanGoBack)
             {
-                NavigationService.RemoveBackEntry();
+                Store_Account_Frame.NavigationService.RemoveBackEntry();
             }
-            NavigationService.RemoveBackEntry();
+            Store_Account_Frame.NavigationService.RemoveBackEntry();
+        }
+
+        private void Store_Account_Mailing_But_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -101,8 +101,8 @@
     <Setting Name="Start_Creating_Shortcut" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="_uu" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="First_Started_after_Update" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="First_Started" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

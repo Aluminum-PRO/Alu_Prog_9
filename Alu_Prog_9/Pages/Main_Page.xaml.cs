@@ -38,15 +38,16 @@ namespace Alu_Prog_9.Pages
             StaticVars.Store_Home_But = Store_Home_But;
             StaticVars.Store_Library_But = Store_Library_But;
 
-            if (Properties.Settings.Default.First_Started == 0)
+            if (Properties.Settings.Default.First_Started_after_Update == 0)
             { 
                 Store_Frame.Content = new Store_News_Page();
                 Store_News_But.IsChecked = true;
-                Properties.Settings.Default.First_Started = 1; 
+                Properties.Settings.Default.First_Started_after_Update = 1; 
                 Properties.Settings.Default.Save(); 
             }
             else
                 Store_Frame.Content = new Store_Home_Page();
+
             if (Properties.Settings.Default.User_Login.ToLower() == "admin")
             {
                 Store_Admin_But.Visibility = Visibility.Visible;

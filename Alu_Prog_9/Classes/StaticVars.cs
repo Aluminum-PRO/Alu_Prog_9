@@ -21,7 +21,7 @@ namespace Alu_Prog_9.Classes
         public static List<DataBase> Application = new List<DataBase>();
         public static List<DataBase> Soft = new List<DataBase>();
 
-        public static int Load_Soft_Info;
+        public static int Load_Soft_Info = 0, Auto_Update = 1, Update_Msg = 1;
         //public static string ;
 
         public static int Count_Update, Count_Update_Al, Count_Soft, Gender = 0, Soft_License, Bot_License;

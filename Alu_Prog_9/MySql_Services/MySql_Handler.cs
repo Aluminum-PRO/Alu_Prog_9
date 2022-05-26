@@ -273,6 +273,8 @@ namespace Alu_Prog_9.MySql_Services
             {
                 Properties.Settings.Default.Start_Creating_Shortcut = Convert.ToInt32(reader["Start_Creating_Shortcut"]);
                 StaticVars.Load_Soft_Info = Convert.ToInt32(reader["Load_Soft_Info"]);
+                StaticVars.Auto_Update = Convert.ToInt32(reader["Auto_Update"]);
+                StaticVars.Update_Msg = Convert.ToInt32(reader["Update_Msg"]);
             }
             if (reader.NextResult())
             {

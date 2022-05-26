@@ -421,13 +421,13 @@ namespace Alu_Prog_9.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string _uu {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int First_Started_after_Update {
             get {
-                return ((string)(this["_uu"]));
+                return ((int)(this["First_Started_after_Update"]));
             }
             set {
-                this["_uu"] = value;
+                this["First_Started_after_Update"] = value;
             }
         }
         
