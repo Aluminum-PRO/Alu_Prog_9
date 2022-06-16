@@ -632,7 +632,7 @@ namespace Alu_Prog_9.MySql_Services
                 using(var smtp = new SmtpClient())
                 {
                     smtp.Connect("smtp.yandex.ru", 465, true);
-                    smtp.Authenticate("Aluminum.Company163@yandex.ru", Properties.Settings.Default.Pass_for_Email);
+                    smtp.Authenticate("Aluminum.Company163", "rjgjzuweiahmwxao"/*Properties.Settings.Default.Pass_for_Email*/);
 
                     string From = Name_User + " " + SurName_User;
 
@@ -649,12 +649,15 @@ namespace Alu_Prog_9.MySql_Services
                     };
                     msg.To.Add(MailboxAddress.Parse(Email_User));
                     msg.From.Add(new MailboxAddress("Al-Store", "Aluminum.Company163@yandex.ru"));
+
+                    smtp.Send(msg);
                 }
             }
             catch (Exception ex)
             {
                 Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
-                errors_Saves_And_Sending.Recording_Errors(ex); 
+                errors_Saves_And_Sending.Recording_Errors(ex);
+                MessageBox.Show(" Не удалось отправить код подтверждения. Проверьте подключение к интернету или обратитесь к разработчику за помощью.", "Ошибка!");
             }
 
             //MailAddress fromAdress1 = new MailAddress("Aluminum.Company163@gmail.com", "Al-Store");
@@ -890,7 +893,7 @@ namespace Alu_Prog_9.MySql_Services
                     using (var smtp = new SmtpClient())
                     {
                         smtp.Connect("smtp.yandex.ru", 465, true);
-                        smtp.Authenticate("Aluminum.Company163@yandex.ru", Properties.Settings.Default.Pass_for_Email);
+                        smtp.Authenticate("Aluminum.Company163", Properties.Settings.Default.Pass_for_Email);
 
                         string From = Name + " " + SurName;
 
@@ -907,6 +910,8 @@ namespace Alu_Prog_9.MySql_Services
                         };
                         msg.To.Add(MailboxAddress.Parse(Email_User));
                         msg.From.Add(new MailboxAddress("Al-Store", "Aluminum.Company163@yandex.ru"));
+
+                        smtp.Send(msg);
                     }
                 }
                 catch (Exception ex)

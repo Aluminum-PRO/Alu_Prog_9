@@ -57,7 +57,7 @@ namespace Alu_Prog_9.Pages.Login_Pages
                 MessageBoxResult result = MessageBox.Show(" Для регистрации необходимо обновление.\n    Обновиться?", "Al-Store", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Update_Al_Window update_Al_Window = new Update_Al_Window();
+                    Update_Al_Window update_Al_Window = new Update_Al_Window(false);
                     update_Al_Window.Show();
                     StaticVars.MainWindow.Hide();
                 }

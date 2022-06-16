@@ -85,7 +85,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
             Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
             telegram_Bot_Send_Activity.Al_Store_Updating();
 
-            Update_Al_Window update_Al_Window = new Update_Al_Window();
+            Update_Al_Window update_Al_Window = new Update_Al_Window(false);
             update_Al_Window.Show();
             StaticVars.MainWindow.Hide();
         }
