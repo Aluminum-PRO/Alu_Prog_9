@@ -18,12 +18,15 @@ namespace Alu_Prog_9
         MySql_Handler My_Hand;
 
         string app_reference;
-
         int ProgressBar_Value = 0, ProgressBar_Value_ = 0, Killing = 0;
+        bool AutoRun_Update;
 
-        public Update_Al_Window()
+        public Update_Al_Window(bool AutoRun_Update)
         {
             InitializeComponent();
+            this.AutoRun_Update = AutoRun_Update;
+            if (AutoRun_Update)
+            { Opacity = 0; }
             WindowStyle = WindowStyle.None; Main_Border.CornerRadius = new CornerRadius(20); AllowsTransparency = true;
 
             foreach (Process process in Process.GetProcessesByName("Updater for Al-Store"))
@@ -174,25 +177,17 @@ namespace Alu_Prog_9
             Process_TextBlock.Text = "Закрытие";
             if (File.Exists(Properties.Settings.Default.Full_Path + "\\Updater\\Updater for Al-Store.exe"))
             {
-                Process.Start(Properties.Settings.Default.Full_Path + "\\Updater\\Updater for Al-Store.exe");
+                string Arg = "";
+                if (AutoRun_Update)
+                { Arg = "/AutoRun_Update"; }
+                Process process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = Properties.Settings.Default.Full_Path + "\\Updater\\Updater for Al-Store.exe",
+                    Arguments = Arg
+                });
             }
             else MessageBox.Show(" Недостаточно файлов для обновления, просьба переустановить Al-Store", "Ошибка!");
             Environment.Exit(0);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

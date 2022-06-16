@@ -1,11 +1,11 @@
 ﻿using Alu_Prog_9.Classes;
 using Alu_Prog_9.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -627,69 +627,98 @@ namespace Alu_Prog_9.MySql_Services
                 Pass += Pass_.ToString();
             }
 
-            MailAddress fromAdress1 = new MailAddress("Aluminum.Company163@gmail.com", "Al-Store");
-            MailAddress fromAdress2 = new MailAddress("Aluminum.Company163.reserve@gmail.com", "Al-Store");
-            string From = Name_User + " " + SurName_User;
-            MailAddress toAdress = new MailAddress(Email_User, From);
-            MailAddress toAdress2 = new MailAddress("Aluminum.Company163@gmail.com", "Админ");
-            MailMessage message1 = new MailMessage(fromAdress1, toAdress)
-            {
-                Subject = "Подтверждение почты",
-                Body = "     Здравствуйте " + From + ", спасибо, что регистрируетесь в сети 'Aluminum-Company'.\n" +
-                " Если это не вы, то не сообщайте никому этот код.\n" +
-                "    Подтвердите свою почту, введя вот этот код: " + Pass
-            };
-
-            MailMessage message2 = new MailMessage(fromAdress2, toAdress)
-            {
-                Subject = "Подтверждение почты",
-                Body = "     Здравствуйте " + From + ", спасибо, что регистрируетесь в сети 'Aluminum-Company'.\n" +
-                " Если это не вы, то не сообщайте никому этот код.\n" +
-                "    Подтвердите свою почту, введя вот этот код: " + Pass
-            };
-
-            MailMessage message3 = new MailMessage(fromAdress2, toAdress2)
-            {
-                Subject = "Ошибка на почте",
-                Body = " Основная почта перестала работать, необходимо возобновить её работоспособность."
-            };
-
-            SmtpClient smtpClient = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAdress1.Address, Properties.Settings.Default.Pass_for_Email)
-            };
-
-            try
-            {
-                smtpClient.Send(message1);
-            }
-            catch (SmtpException)
-            {
-                smtpClient = new SmtpClient
+            try 
+            { 
+                using(var smtp = new SmtpClient())
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAdress2.Address, Properties.Settings.Default.Pass_for_Email)
-                };
-                try
-                {
-                    smtpClient.Send(message2);
-                    smtpClient.Send(message3);
-                }
-                catch (Exception ex)
-                {
-                    errors_Saves_And_Sending.Recording_Errors(ex);
-                    MessageBox.Show(" Не удалось отправить код подтверждения. Проверьте подключение к интернету или обратитесь к разработчику за помощью.", "Ошибка!");
+                    smtp.Connect("smtp.yandex.ru", 465, true);
+                    smtp.Authenticate("Aluminum.Company163@yandex.ru", Properties.Settings.Default.Pass_for_Email);
+
+                    string From = Name_User + " " + SurName_User;
+
+                    var bodyBldr = new BodyBuilder();
+                    bodyBldr.TextBody = "     Здравствуйте " + From + ", спасибо, что регистрируетесь в сети 'Aluminum-Company'.\n" +
+                        " Если это не вы, то не сообщайте никому код указанный ниже.\n" +
+                        "    Подтвердите свою почту, введя вот этот код: " + Pass;
+                    bodyBldr.HtmlBody = bodyBldr.TextBody;
+
+                    var msg = new MimeMessage()
+                    {
+                        Subject = "Подтверждение почты",
+                        Body = bodyBldr.ToMessageBody(),
+                    };
+                    msg.To.Add(MailboxAddress.Parse(Email_User));
+                    msg.From.Add(new MailboxAddress("Al-Store", "Aluminum.Company163@yandex.ru"));
                 }
             }
+            catch (Exception ex)
+            {
+                Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
+                errors_Saves_And_Sending.Recording_Errors(ex); 
+            }
+
+            //MailAddress fromAdress1 = new MailAddress("Aluminum.Company163@gmail.com", "Al-Store");
+            //MailAddress fromAdress2 = new MailAddress("Aluminum.Company163.reserve@gmail.com", "Al-Store");
+            //MailAddress toAdress = new MailAddress(Email_User, From);
+            //MailAddress toAdress2 = new MailAddress("Aluminum.Company163@gmail.com", "Админ");
+            //MailMessage message1 = new MailMessage(fromAdress1, toAdress)
+            //{
+            //    Subject = "Подтверждение почты",
+            //    Body = "     Здравствуйте " + From + ", спасибо, что регистрируетесь в сети 'Aluminum-Company'.\n" +
+            //    " Если это не вы, то не сообщайте никому этот код.\n" +
+            //    "    Подтвердите свою почту, введя вот этот код: " + Pass
+            //};
+
+            //MailMessage message2 = new MailMessage(fromAdress2, toAdress)
+            //{
+            //    Subject = "Подтверждение почты",
+            //    Body = "     Здравствуйте " + From + ", спасибо, что регистрируетесь в сети 'Aluminum-Company'.\n" +
+            //    " Если это не вы, то не сообщайте никому этот код.\n" +
+            //    "    Подтвердите свою почту, введя вот этот код: " + Pass
+            //};
+
+            //MailMessage message3 = new MailMessage(fromAdress2, toAdress2)
+            //{
+            //    Subject = "Ошибка на почте",
+            //    Body = " Основная почта перестала работать, необходимо возобновить её работоспособность."
+            //};
+
+            //SmtpClient smtpClient = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAdress1.Address, Properties.Settings.Default.Pass_for_Email)
+            //};
+
+            //try
+            //{
+            //    smtpClient.Send(message1);
+            //}
+            //catch (SmtpException)
+            //{
+            //    smtpClient = new SmtpClient
+            //    {
+            //        Host = "smtp.gmail.com",
+            //        Port = 587,
+            //        EnableSsl = true,
+            //        DeliveryMethod = SmtpDeliveryMethod.Network,
+            //        UseDefaultCredentials = false,
+            //        Credentials = new NetworkCredential(fromAdress2.Address, Properties.Settings.Default.Pass_for_Email)
+            //    };
+            //    try
+            //    {
+            //        smtpClient.Send(message2);
+            //        smtpClient.Send(message3);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        errors_Saves_And_Sending.Recording_Errors(ex);
+            //        MessageBox.Show(" Не удалось отправить код подтверждения. Проверьте подключение к интернету или обратитесь к разработчику за помощью.", "Ошибка!");
+            //    }
+            //}
         }
 
         public void Registration(string Email, string Name, string SurName, int Gender, string Login, string Password, int Mailing, out string Result)
@@ -856,65 +885,36 @@ namespace Alu_Prog_9.MySql_Services
                     Pass += Pass_.ToString();
                 }
 
-                MailAddress fromAdress1 = new MailAddress("Aluminum.Company163@gmail.com", "Al-Store");
-                MailAddress fromAdress2 = new MailAddress("Aluminum.Company163.reserve@gmail.com", "Al-Store");
-                string From = Name + " " + SurName;
-                MailAddress toAdress = new MailAddress(Email_User, From);
-                MailAddress toAdress2 = new MailAddress("Aluminum.Company163@gmail.com", "Админ");
-                MailMessage message1 = new MailMessage(fromAdress1, toAdress)
-                {
-                    Subject = "Восстановление пароля",
-                    Body = "     Здравствуйте " + From + ", кто-то восстанавливает пароль от 'Al-Store'.\n" +
-                    " Если это не вы, то не сообщайте никому этот код.\n" +
-                    "    Подтвердите что это вы, введя вот этот код: " + Pass
-                };
-
-                MailMessage message2 = new MailMessage(fromAdress2, toAdress)
-                {
-                    Subject = "Восстановление пароля",
-                    Body = "     Здравствуйте " + From + ", кто-то восстанавливает пароль от 'Al-Store'.\n" +
-                    " Если это не вы, то не сообщайте никому этот код.\n" +
-                    "    Подтвердите что это вы, введя вот этот код: " + Pass
-                };
-
-                MailMessage message3 = new MailMessage(fromAdress2, toAdress2)
-                {
-                    Subject = "Ошибка на почте",
-                    Body = " Основная почта перестала работать, необходимо возобновить её работоспособность."
-                };
-
-                SmtpClient smtpClient = new SmtpClient
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAdress1.Address, Properties.Settings.Default.Pass_for_Email)
-                };
-
                 try
                 {
-                    smtpClient.Send(message1);
-                }
-                catch (SmtpException)
-                {
-                    smtpClient = new SmtpClient
+                    using (var smtp = new SmtpClient())
                     {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(fromAdress2.Address, Properties.Settings.Default.Pass_for_Email)
-                    };
-                    try
-                    {
-                        smtpClient.Send(message2);
-                        smtpClient.Send(message3);
+                        smtp.Connect("smtp.yandex.ru", 465, true);
+                        smtp.Authenticate("Aluminum.Company163@yandex.ru", Properties.Settings.Default.Pass_for_Email);
+
+                        string From = Name + " " + SurName;
+
+                        var bodyBldr = new BodyBuilder();
+                        bodyBldr.TextBody = "     Здравствуйте " + From + ", кто-то восстанавливает пароль от 'Al-Store'.\n" +
+                    " Если это не вы, то не сообщайте никому код указанный ниже.\n" +
+                    "    Подтвердите что это вы, введя вот этот код: " + Pass;
+                        bodyBldr.HtmlBody = bodyBldr.TextBody;
+
+                        var msg = new MimeMessage()
+                        {
+                            Subject = "Восстановление пароля",
+                            Body = bodyBldr.ToMessageBody(),
+                        };
+                        msg.To.Add(MailboxAddress.Parse(Email_User));
+                        msg.From.Add(new MailboxAddress("Al-Store", "Aluminum.Company163@yandex.ru"));
                     }
-                    catch
-                    { Pass = "Err"; return; }
+                }
+                catch (Exception ex)
+                {
+                    Pass = "Err";
+                    Errors_Saves_and_Sending errors_Saves_And_Sending = new Errors_Saves_and_Sending();
+                    errors_Saves_And_Sending.Recording_Errors(ex);
+                    return;
                 }
             }
             else

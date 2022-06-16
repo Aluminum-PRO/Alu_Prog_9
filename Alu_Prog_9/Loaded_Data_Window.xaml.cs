@@ -17,17 +17,40 @@ namespace Alu_Prog_9
     /// </summary>
     public partial class Loaded_Data_Window : Window
     {
+        Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
+
         private MySql_Handler My_Hand;
         private Handler handler;
         private string Activated_File_Text;
+        bool Copy_Check = false, AutoRun_Update = false;
 
         public Loaded_Data_Window()
         {
             InitializeComponent();
-            Process[] processList = Process.GetProcessesByName("Al-Store");
-            if (processList.Length > 1)
-            { Environment.Exit(0); }
-            else { Load(); }
+            telegram_Bot_Send_Activity.Al_Store_Started();
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length == 1)
+            {
+                Copy_Check = true;
+            }
+            else
+            {
+                foreach (String element in args)
+                {
+                    if (element == "/AutoRun_Update")
+                    {
+                        AutoRun_Update = true;
+                    }
+                }
+            }
+
+            if (Copy_Check)
+            {
+                Process[] processList = Process.GetProcessesByName("Al-Store");
+                if (processList.Length > 1)
+                { Environment.Exit(0); }
+            }
+            Load();
         }
 
         private void Load()
@@ -145,6 +168,7 @@ namespace Alu_Prog_9
 
                     if (Restoring_Authorization_Bool == "True")
                     {
+                        telegram_Bot_Send_Activity.Al_Store_Auto_Logined();
                         My_Hand.Getting_User_Data();
 
                         //TODO: Переделать окно уведомления о восстановлении активации
@@ -176,13 +200,13 @@ namespace Alu_Prog_9
                         Properties.Settings.Default.Save();
                         My_Hand.Set_Properties("Start_Creating_Shortcut", Properties.Settings.Default.Start_Creating_Shortcut, out bool Result);
                         if (Result == true)
-                        {  }
+                        { }
                         else if (Result == false)
                         {
                             if (Properties.Settings.Default.Start_Creating_Shortcut == 0)
-                            { Properties.Settings.Default.Start_Creating_Shortcut = 1;}
+                            { Properties.Settings.Default.Start_Creating_Shortcut = 1; }
                             else if (Properties.Settings.Default.Start_Creating_Shortcut == 1)
-                            { Properties.Settings.Default.Start_Creating_Shortcut = 0;}
+                            { Properties.Settings.Default.Start_Creating_Shortcut = 0; }
                             MessageBox.Show(" Не удалось обновить данные. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
                         }
                         //TODO: Есть вопросы к функции "не спаршивать больше про создание ярлыка"

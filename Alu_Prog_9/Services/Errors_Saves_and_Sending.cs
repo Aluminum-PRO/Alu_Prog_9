@@ -21,7 +21,7 @@ namespace Alu_Prog_9.Services
         {
             Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
 
-            telegram_Bot_Send_Activity.Al_Store_Send_Errors(path);
+            telegram_Bot_Send_Activity.Al_Store_Send_File_Errors_File(path);
         }
     }
 }

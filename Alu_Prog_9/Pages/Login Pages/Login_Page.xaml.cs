@@ -1,6 +1,7 @@
 ﻿using Alu_Prog_9.Classes;
 using Alu_Prog_9.MySql_Services;
 using Alu_Prog_9.Pages.Registration_Pages;
+using Alu_Prog_9.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,6 +26,7 @@ namespace Alu_Prog_9.Pages.Login_Pages
     /// </summary>
     public partial class Login_Page : Page
     {
+        Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
         MySql_Handler My_Hand;
 
         string Login_User, Password_User;
@@ -93,6 +95,7 @@ namespace Alu_Prog_9.Pages.Login_Pages
 
             if (Login_Bool == "True")
             {
+                telegram_Bot_Send_Activity.Al_Store_Started();
                 MessageBox.Show(" Вы успешно авторизовались.", " Al-Store");
 
                 Properties.Settings.Default.Authorization = 1;

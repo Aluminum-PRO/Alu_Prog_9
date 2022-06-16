@@ -81,7 +81,7 @@ namespace Alu_Prog_9.Services
             Send(Msg);
         }
 
-        public void Al_Store_Send_Errors(string path)
+        public void Al_Store_Send_File_Errors_File(string path)
         {
             Msg = "Al-Bot(Al-Store)\nPC: /" + Properties.Settings.Default.User_Identyty +
                 $"\nAcLg: {Properties.Settings.Default.User_Login}\nAcNm: {Properties.Settings.Default.User_Name} {Properties.Settings.Default.User_SurName}\nMsg: Error Log:";
