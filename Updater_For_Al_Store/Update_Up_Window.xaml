@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Updater_For_Al_Store"
         mc:Ignorable="d"
-        Title="Al-Store" Height="250" Width="500" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing" Background="Transparent" ResizeMode="NoResize" AllowsTransparency="False" WindowStartupLocation="CenterScreen">
+        Title="Al-Store" Height="250" Width="500" Background="Transparent" ResizeMode="NoResize" AllowsTransparency="False" WindowStartupLocation="CenterScreen">
 
     <Border x:Name="Main_Border" CornerRadius="0" Background="#272537">
         <Grid>

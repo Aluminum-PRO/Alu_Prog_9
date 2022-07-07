@@ -25,6 +25,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
     public partial class Store_Settings_Update_Page : Page
     {
         MySql_Handler My_Hand;
+        Handler handler;
 
         public Store_Settings_Update_Page()
         {
@@ -83,7 +84,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
         private void Start_Update_But_Click(object sender, RoutedEventArgs e)
         {
             Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
-            telegram_Bot_Send_Activity.Al_Store_Updating();
+            telegram_Bot_Send_Activity.Al_Store_Updating(false);
 
             Update_Al_Window update_Al_Window = new Update_Al_Window(false);
             update_Al_Window.Show();
@@ -93,6 +94,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
         private void Auto_Update_But_Click(object sender, RoutedEventArgs e)
         {
             My_Hand = new MySql_Handler();
+            handler = new Handler();
+            
             if (Auto_Update_But.IsChecked == false)
                 StaticVars.Auto_Update = 0;
             else if (Auto_Update_But.IsChecked == true)
@@ -108,6 +111,10 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
                 { StaticVars.Auto_Update = 0; Auto_Update_But.IsChecked = false; }
                 MessageBox.Show(" Не удалось обновить данные. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
             }
+            
+            if (Auto_Update_But.IsChecked == true)
+                handler.SetAutorunValue(true);
+
 
             if (StaticVars.Auto_Update == 0)
             { Update_Msg_StackPanel.Visibility = Visibility.Visible; }
@@ -118,6 +125,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
         private void Update_Msg_But_Click(object sender, RoutedEventArgs e)
         {
             My_Hand = new MySql_Handler();
+            handler = new Handler();
+
             if (Update_Msg_But.IsChecked == false)
                 StaticVars.Update_Msg = 0;
             else if (Update_Msg_But.IsChecked == true)
@@ -133,6 +142,10 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
                 { StaticVars.Update_Msg = 0; Update_Msg_But.IsChecked = false; }
                 MessageBox.Show(" Не удалось обновить данные. Проверьте подключение к интернету или обратитесь к разработчику за помощью. \n Aluminum.Company163@gmail.com или Aluminum.Company163.reserve@gmail.com", "Ошибка!");
             }
+            if (Update_Msg_But.IsChecked == true)
+                handler.SetAutorunValue(true);
+            else if (Update_Msg_But.IsChecked == false)
+                handler.SetAutorunValue(false);
         }
     }
 }

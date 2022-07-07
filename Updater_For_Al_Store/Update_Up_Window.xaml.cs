@@ -24,9 +24,27 @@ namespace Updater_For_Al_Store
 
         int ProgressBar_Value = 0, ProgressBar_Value_ = 0, Killing = 0, Update_Process_1;
 
+        bool AutoRun_Update;
+
         public Update_Up_Window()
         {
             InitializeComponent();
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length == 1)
+            { }
+            else
+            {
+                foreach (String element in args)
+                {
+                    if (element == "/AutoRun_Update")
+                    {
+                        AutoRun_Update = true;
+                        Opacity = 0;
+                        ShowInTaskbar = false;
+                    }
+                }
+            }
 
             WindowStyle = WindowStyle.None; Main_Border.CornerRadius = new CornerRadius(20); AllowsTransparency = true;
             
@@ -206,28 +224,13 @@ namespace Updater_For_Al_Store
             ProgressBar_2.Value = ProgressBar_Value_;
             Status_TextBlock.Text = "Завершение работы Updater-а";
             Process_TextBlock.Text = "Закрытие";
-            if (File.Exists(Properties.Settings.Default.Full_Path + "\\Al-Store\\Al-Store.exe"))
+            if (File.Exists(Properties.Settings.Default.Full_Path + "\\Al-Store\\Al-Store.exe") && !AutoRun_Update)
             {
                 Process.Start(Properties.Settings.Default.Full_Path + "\\Al-Store\\Al-Store.exe");
             }
-            else
+            else if (!File.Exists(Properties.Settings.Default.Full_Path + "\\Al-Store\\Al-Store.exe") && !AutoRun_Update)
             { MessageBox.Show(" Неизвестная ошибка обновления. Повторите попытку, или не тратьте время до исправления разработчиком ошибок.", "Ошибка!"); }
             Environment.Exit(0);
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

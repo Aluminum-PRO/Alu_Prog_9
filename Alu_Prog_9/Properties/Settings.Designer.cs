@@ -482,12 +482,12 @@ namespace Alu_Prog_9.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string _ss {
+        public string Path_Shortcut_AutoRun {
             get {
-                return ((string)(this["_ss"]));
+                return ((string)(this["Path_Shortcut_AutoRun"]));
             }
             set {
-                this["_ss"] = value;
+                this["Path_Shortcut_AutoRun"] = value;
             }
         }
         

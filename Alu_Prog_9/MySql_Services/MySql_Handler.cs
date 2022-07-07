@@ -276,6 +276,17 @@ namespace Alu_Prog_9.MySql_Services
                 StaticVars.Auto_Update = Convert.ToInt32(reader["Auto_Update"]);
                 StaticVars.Update_Msg = Convert.ToInt32(reader["Update_Msg"]);
             }
+
+            handler = new Handler();
+            if (StaticVars.Auto_Update == 0)
+            { 
+                handler.SetAutorunValue(false);
+            }
+            else if (StaticVars.Auto_Update == 1)
+            {
+                handler.SetAutorunValue(true);
+            }
+
             if (reader.NextResult())
             {
                 while (reader.Read())
@@ -307,6 +318,7 @@ namespace Alu_Prog_9.MySql_Services
             }
             if (reader.NextResult())
             {
+                StaticVars.Application.Clear();
                 while (reader.Read())
                 {
                     byte[] blob = (byte[])(reader["image_main"]);
@@ -389,6 +401,8 @@ namespace Alu_Prog_9.MySql_Services
             }
             if (reader.NextResult() && StaticVars.Load_Soft_Info == 1)
             {
+                StaticVars.Count_Soft = 0;
+                StaticVars.Soft.Clear();
                 while (reader.Read())
                 {
                     byte[] blob = (Byte[])reader["soft_image"];

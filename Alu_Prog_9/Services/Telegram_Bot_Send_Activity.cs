@@ -64,12 +64,15 @@ namespace Alu_Prog_9.Services
             Send(Msg);
         }
 
-        public void Al_Store_Updating()
+        public void Al_Store_Updating(bool Auto_Update)
         {
             if (Properties.Settings.Default.User_Login.ToLower() == "admin")
                 return;
+            string Auto_Update_txt = "ручное ";
+            if (Auto_Update)
+                Auto_Update_txt = "автоматическое ";
             Msg = "Al-Bot(Al-Store)\nPC: /" + Properties.Settings.Default.User_Identyty +
-                $"\nAcLg: {Properties.Settings.Default.User_Login}\nAcNm: {Properties.Settings.Default.User_Name} {Properties.Settings.Default.User_SurName}\nMsg: Запущено обновление";
+                $"\nAcLg: {Properties.Settings.Default.User_Login}\nAcNm: {Properties.Settings.Default.User_Name} {Properties.Settings.Default.User_SurName}\nMsg: Запущено {Auto_Update_txt}обновление";
             Send(Msg);
         }
 

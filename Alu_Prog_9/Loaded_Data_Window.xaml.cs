@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Alu_Prog_9
@@ -17,12 +18,12 @@ namespace Alu_Prog_9
     /// </summary>
     public partial class Loaded_Data_Window : Window
     {
-        Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
+        private Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
 
         private MySql_Handler My_Hand;
         private Handler handler;
         private string Activated_File_Text;
-        bool Copy_Check = false, AutoRun_Update = false;
+        private bool Copy_Check = false, AutoRun_Update = false;
 
         public Loaded_Data_Window()
         {
@@ -35,7 +36,7 @@ namespace Alu_Prog_9
             }
             else
             {
-                foreach (String element in args)
+                foreach (string element in args)
                 {
                     if (element == "/AutoRun_Update")
                     {
@@ -67,7 +68,8 @@ namespace Alu_Prog_9
             });
 
             thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            if (!AutoRun_Update)
+                thread.Start();
 
             string Source = "";
             string source = Assembly.GetExecutingAssembly().Location;
@@ -99,6 +101,10 @@ namespace Alu_Prog_9
             {
                 Directory.CreateDirectory(Properties.Settings.Default.Path_Errors_Log);
             }
+
+            Properties.Settings.Default.Path_Shortcut_AutoRun = $@"C:\Users\{Environment.UserName}\AppData\Roaming\Aluminum-Company\Al-Store\Al-Store AutoRun.lnk";
+            handler = new Handler();
+            handler.Check_Shortcut_AutoRun();
 
             Properties.Settings.Default.User_Identyty = Environment.UserName;
 
@@ -152,10 +158,19 @@ namespace Alu_Prog_9
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
+            if (StaticVars.Count_Update_Al == 0)
+                AutoRun_Update = false;
 
             if (Properties.Settings.Default.Authorization == 1)
             {
                 My_Hand.Getting_User_Data();
+                if (AutoRun_Update && StaticVars.Auto_Update == 1)
+                { Auto_Update(); return; }
+                else if (AutoRun_Update && StaticVars.Update_Msg == 1)
+                {
+                    Auto_Update_Msg();
+                    return;
+                }
             }
             else if (Properties.Settings.Default.Authorization == 0)
             {
@@ -170,6 +185,13 @@ namespace Alu_Prog_9
                     {
                         telegram_Bot_Send_Activity.Al_Store_Auto_Logined();
                         My_Hand.Getting_User_Data();
+                        if (AutoRun_Update && StaticVars.Auto_Update == 1)
+                        { Auto_Update(); return; }
+                        else if (AutoRun_Update && StaticVars.Update_Msg == 1)
+                        {
+                            Auto_Update_Msg();
+                            return;
+                        }
 
                         //TODO: Переделать окно уведомления о восстановлении активации
                         System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
@@ -188,7 +210,6 @@ namespace Alu_Prog_9
                 MessageBoxResult result = MessageBox.Show(" На вашем рабочем столе нет ярлыка 'Al-Store'.\n\n   Создать?", "Al-Store", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    handler = new Handler();
                     handler.Create_Shortcut("Al-Store", "Al-Store", "", "Al-Store - Магазин приложений", Properties.Settings.Default.Ver_Store, "Ctrl+Shift+A");
                 }
                 else if (result == MessageBoxResult.No)
@@ -223,6 +244,35 @@ namespace Alu_Prog_9
             }
             StaticVars.Loading_Data = false;
             Check_Loaded();
+        }
+
+        private void Auto_Update()
+        {
+            System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.Visible = true;
+            notifyIcon.Text = "Al-Store";
+            notifyIcon.Icon = Properties.Resources.Al_Store;
+            notifyIcon.ShowBalloonTip(10000, "Al-Store", " Запущено автоматическое обновление Al-Store.\n\nДанную функцию можно отключить в настройках обновления Al-Store.", System.Windows.Forms.ToolTipIcon.Info);
+            notifyIcon.Visible = false;
+
+            Telegram_Bot_Send_Activity telegram_Bot_Send_Activity = new Telegram_Bot_Send_Activity();
+            telegram_Bot_Send_Activity.Al_Store_Updating(true);
+
+            Update_Al_Window update_Al_Window = new Update_Al_Window(true);
+            update_Al_Window.Show();
+        }
+
+        private async void Auto_Update_Msg()
+        {
+            System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.Visible = true;
+            notifyIcon.Text = "Al-Store";
+            notifyIcon.Icon = Properties.Resources.Al_Store;
+            notifyIcon.ShowBalloonTip(10000, "Al-Store", " Доступно обновление Al-Store.\n\nДанную функцию можно отключить в настройках обновления Al-Store.", System.Windows.Forms.ToolTipIcon.Info);
+            notifyIcon.Visible = false;
+
+            await Task.Delay(10000);
+            Environment.Exit(0);
         }
 
         private void Check_Loaded()
