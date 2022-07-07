@@ -139,10 +139,7 @@ namespace Alu_Prog_9.Services
                 string name = "Al-Store (Upd)";
                 if (autorun)
                 {
-                    string value = (string)reg.GetValue(name);
-
-                    if (string.IsNullOrEmpty(value))
-                    { reg.SetValue(name, ExePath); }
+                    reg.SetValue(name, ExePath);
 
                 }
                 else
