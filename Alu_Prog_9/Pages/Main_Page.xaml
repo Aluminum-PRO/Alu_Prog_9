@@ -20,7 +20,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Frame x:Name="Store_Frame" Grid.Row="1" Grid.Column="2" Navigated="Store_Frame_Navigated"></Frame>
-        <TextBlock Text="Al-Store"
+        <TextBlock Text="Al-Store" x:Name="Al_Store_Main_Name_Text_Box"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    Foreground="White"

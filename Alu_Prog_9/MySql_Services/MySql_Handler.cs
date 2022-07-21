@@ -49,8 +49,6 @@ namespace Alu_Prog_9.MySql_Services
                 Properties.Settings.Default.User_Login = Login_User;
                 Properties.Settings.Default.User_Password = Password_User;
 
-                Properties.Settings.Default.Save();
-
                 Login_Bool = "True";
             }
             else
@@ -86,8 +84,6 @@ namespace Alu_Prog_9.MySql_Services
                 if (Tab_Programs_Db.Rows.Count > 0)
                 {
                     Properties.Settings.Default.Authorization = 1; Restoring_Authorization_Bool = "True";
-
-                    Properties.Settings.Default.Save();
                 }
                 else
                 {
@@ -155,8 +151,6 @@ namespace Alu_Prog_9.MySql_Services
             }
 
             My_Con.closeConnection();
-
-            Properties.Settings.Default.Save();
         }
 
         public void Getting_User_Data()
@@ -178,7 +172,6 @@ namespace Alu_Prog_9.MySql_Services
             {
                 MessageBox.Show(" Ваш аккаунт был удалён или произошла внутренняя ошибка.", "Авторизация");
                 Properties.Settings.Default.Authorization = 0;
-                Properties.Settings.Default.Save();
                 if (File.Exists("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\AppData\\Roaming\\Aluminum-Company\\Al-Store\\Activated\\Activated_File.txt"))
                 {
                     File.Delete("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\AppData\\Roaming\\Aluminum-Company\\Al-Store\\Activated\\Activated_File.txt");
@@ -431,7 +424,6 @@ namespace Alu_Prog_9.MySql_Services
             }
             My_Con.closeConnection();
 
-            Properties.Settings.Default.Save();
 
             if (!Directory.Exists(Properties.Settings.Default.Path_Programs))
             {
@@ -802,7 +794,6 @@ namespace Alu_Prog_9.MySql_Services
                 { }
                 My_Con.closeConnection();
 
-                Properties.Settings.Default.Save();
 
                 Result = "True";
             }
@@ -958,7 +949,6 @@ namespace Alu_Prog_9.MySql_Services
             {
                 Properties.Settings.Default.User_Login = Login;
                 Properties.Settings.Default.User_Password = Pass;
-                Properties.Settings.Default.Save();
 
                 Result = "True";
             }

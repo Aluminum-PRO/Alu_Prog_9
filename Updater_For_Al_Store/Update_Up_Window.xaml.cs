@@ -22,7 +22,7 @@ namespace Updater_For_Al_Store
 
         string app_reference;
 
-        int ProgressBar_Value = 0, ProgressBar_Value_ = 0, Killing = 0, Update_Process_1;
+        int ProgressBar_Value = 0, ProgressBar_Value_ = 0, Killing = 0;
 
         bool AutoRun_Update;
 
@@ -208,11 +208,7 @@ namespace Updater_For_Al_Store
                     }
                 }
                 catch (Exception _ex)
-                {
-                    MessageBox.Show(_ex.ToString());
-                    //Update_Process__2();
-                    //return;
-                }
+                { MessageBox.Show(_ex.ToString()); }
             }
             Process_TextBlock.Text = "Удаление остаточных файлов";
             try
@@ -220,7 +216,6 @@ namespace Updater_For_Al_Store
                 File.Delete(Properties.Settings.Default.Full_Path + "\\Al-Store.zip");
             }
             catch { }
-            Update_Process_1 = 1;
             ProgressBar_2.Value = ProgressBar_Value_;
             Status_TextBlock.Text = "Завершение работы Updater-а";
             Process_TextBlock.Text = "Закрытие";

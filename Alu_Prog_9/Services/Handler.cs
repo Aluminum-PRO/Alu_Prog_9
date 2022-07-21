@@ -131,7 +131,7 @@ namespace Alu_Prog_9.Services
 
         public bool SetAutorunValue(bool autorun)
         {
-            string ExePath = Properties.Settings.Default.Path_Shortcut_AutoRun;
+            string ExePath = Properties.Settings.Default.Path_AutoRun;
             RegistryKey reg;
             reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
             try
@@ -154,18 +154,18 @@ namespace Alu_Prog_9.Services
             return true;
         }
 
-        public void Check_Shortcut_AutoRun()
-        {
-            WshShell shell = new WshShell();
-            string shortcutAddress = Properties.Settings.Default.Path_Shortcut_AutoRun;
-            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
-            shortcut.TargetPath = Assembly.GetExecutingAssembly().Location;
-            shortcut.Arguments = $"\"{Assembly.GetExecutingAssembly().Location}\" /AutoRun_Update";
-            if (System.IO.File.Exists(Properties.Settings.Default.Path_Shortcut + "Al-Store.ico"))
-            {
-                shortcut.IconLocation = Properties.Settings.Default.Path_Shortcut + "Al-Store.ico";
-            }
-            shortcut.Save();
-        }
+        //public void Check_Shortcut_AutoRun()
+        //{
+        //    WshShell shell = new WshShell();
+        //    string shortcutAddress = Properties.Settings.Default.Path_AutoRun;
+        //    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+        //    shortcut.TargetPath = Assembly.GetExecutingAssembly().Location;
+        //    shortcut.Arguments = $"\"{Assembly.GetExecutingAssembly().Location}\" /AutoRun_Update";
+        //    if (System.IO.File.Exists(Properties.Settings.Default.Path_Shortcut + "Al-Store.ico"))
+        //    {
+        //        shortcut.IconLocation = Properties.Settings.Default.Path_Shortcut + "Al-Store.ico";
+        //    }
+        //    shortcut.Save();
+        //}
     }
 }

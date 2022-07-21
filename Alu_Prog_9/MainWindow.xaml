@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Alu_Prog_9"
         mc:Ignorable="d"
-        Title="Al-Store" Height="720" Width="1130" MinHeight="720" MinWidth="1130" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing" Background="Transparent" ResizeMode="CanResizeWithGrip" AllowsTransparency="False" WindowStartupLocation="CenterScreen" Deactivated="Window_Deactivated">
+        Title="Al-Store" Height="720" Width="1130" MinHeight="720" MinWidth="1130" Loaded="Window_Loaded" Closed="Window_Closed" Background="Transparent" ResizeMode="CanResizeWithGrip" AllowsTransparency="False" WindowStartupLocation="CenterScreen" Deactivated="Window_Deactivated">
 
     <Border x:Name="Main_Border" CornerRadius="0" Background="#272537" BorderBrush="Gray" BorderThickness="0.4">
         <Grid>

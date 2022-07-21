@@ -62,5 +62,12 @@
                 Style="{StaticResource Menu_Button_Theme}"
                 Click="Store_Settings_Errors_But_Click"/>
         </StackPanel>
+        <TextBlock Text="(isAdmin)" x:Name="isAdmin_Text_Box" Grid.Row="1"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontSize="10"
+                   Margin="0 0 0 10"
+                   FontFamily="/Fonts/#Poppins"/>
     </Grid>
 </Page>

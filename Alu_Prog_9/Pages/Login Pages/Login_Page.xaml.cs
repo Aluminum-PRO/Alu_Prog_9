@@ -109,8 +109,6 @@ namespace Alu_Prog_9.Pages.Login_Pages
 
                 My_Hand.Getting_User_Data();
 
-                Properties.Settings.Default.Save();
-
                 NavigationService.Navigate(new Main_Page());
 
                 //Process[] processList_Al_Bot = Process.GetProcessesByName("Al-Bot");

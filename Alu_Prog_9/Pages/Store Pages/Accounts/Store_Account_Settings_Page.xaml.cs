@@ -31,7 +31,6 @@ namespace Alu_Prog_9.Pages.Store_Pages.Accounts
         private void Exit_Account_But_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Authorization = 0;
-            Properties.Settings.Default.Save();
             if (File.Exists("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\AppData\\Roaming\\Aluminum-Company\\Al-Store\\Activated\\Activated_File.txt"))
             {
                 File.Delete("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\AppData\\Roaming\\Aluminum-Company\\Al-Store\\Activated\\Activated_File.txt");

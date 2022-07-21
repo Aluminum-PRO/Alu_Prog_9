@@ -7,12 +7,12 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Al-Store - Магазин приложений")]
-[assembly: AssemblyDescription("By Aluminum")]
+[assembly: AssemblyTitle("Auto Update")]
+[assembly: AssemblyDescription("Auto Update")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Aluminum-Company")]
-[assembly: AssemblyProduct("Al-Store By Aluminum")]
-[assembly: AssemblyCopyright("Copyright ©Aluminum-Company 2021-2022")]
+[assembly: AssemblyProduct("Auto Update")]
+[assembly: AssemblyCopyright("Copyright © Aluminum-Company 2022")]
 [assembly: AssemblyTrademark("Aluminum-Company")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.1.41")]
-[assembly: AssemblyFileVersion("0.1.1.41")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

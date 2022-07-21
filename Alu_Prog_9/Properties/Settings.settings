@@ -116,7 +116,7 @@
     <Setting Name="Path_Errors_Log" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Path_Shortcut_AutoRun" Type="System.String" Scope="User">
+    <Setting Name="Path_AutoRun" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="_dd" Type="System.String" Scope="User">

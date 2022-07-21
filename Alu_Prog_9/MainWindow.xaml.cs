@@ -87,11 +87,8 @@ namespace Alu_Prog_9
 
         private void Window_Closed(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Save();
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        { }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

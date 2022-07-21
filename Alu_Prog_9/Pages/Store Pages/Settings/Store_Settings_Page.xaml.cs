@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Security.Principal;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -13,6 +14,12 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
         {
             InitializeComponent();
             Store_Settings_Frame.Content = new Store_Settings_Update_Page();
+
+            bool isAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+            if (isAdmin)
+                isAdmin_Text_Box.Text = "(С правами адмнстратора)";
+            else if (!isAdmin)
+                isAdmin_Text_Box.Text = "(Без прав адмнстратора)";
         }
 
         private void Store_Settings_Update_But_Click(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@ namespace Alu_Prog_9
         {
             InitializeComponent();
             this.AutoRun_Update = AutoRun_Update;
-            if (AutoRun_Update)
+            if (this.AutoRun_Update)
             { Opacity = 0; ShowInTaskbar = false; }
             WindowStyle = WindowStyle.None; Main_Border.CornerRadius = new CornerRadius(20); AllowsTransparency = true;
 

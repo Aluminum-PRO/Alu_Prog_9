@@ -38,6 +38,11 @@ namespace Alu_Prog_9
             {
                 foreach (string element in args)
                 {
+                    if (element == "/Hi")
+                    {
+                        MessageBox.Show("Hi, Admin!", "Al-Store", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Environment.Exit(0);
+                    }
                     if (element == "/AutoRun_Update")
                     {
                         AutoRun_Update = true;
@@ -95,6 +100,11 @@ namespace Alu_Prog_9
             Properties.Settings.Default.Path_Soft = Environment.ExpandEnvironmentVariables(Properties.Settings.Default.Full_Path + "\\Soft");
             Properties.Settings.Default.Path_Updater = Environment.ExpandEnvironmentVariables(Properties.Settings.Default.Full_Path + "\\Updater");
             Properties.Settings.Default.Path_Shortcut = Environment.ExpandEnvironmentVariables(Properties.Settings.Default.Full_Path + "\\Al-Store\\Иконки ярлыков");
+            Properties.Settings.Default.Path_AutoRun = Properties.Settings.Default.Path_Store + "\\Auto Update\\Auto Update.exe";
+            Properties.Settings.Default.User_Identyty = Environment.UserName;
+
+            //handler = new Handler();
+            //handler.Check_Shortcut_AutoRun();
 
             Properties.Settings.Default.Path_Errors_Log = $@"C:\Users\{Properties.Settings.Default.User_Identyty}\AppData\Roaming\Aluminum-Company\Al-Store\Errors Log";
             if (!Directory.Exists(Properties.Settings.Default.Path_Errors_Log))
@@ -102,15 +112,10 @@ namespace Alu_Prog_9
                 Directory.CreateDirectory(Properties.Settings.Default.Path_Errors_Log);
             }
 
-            Properties.Settings.Default.Path_Shortcut_AutoRun = $@"C:\Users\{Environment.UserName}\AppData\Roaming\Aluminum-Company\Al-Store\Al-Store AutoRun.lnk";
-            handler = new Handler();
-            handler.Check_Shortcut_AutoRun();
-
-            Properties.Settings.Default.User_Identyty = Environment.UserName;
 
             bool isAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 
-            if (isAdmin == false && Source.Remove(1) == "C")
+            if (!isAdmin && Source.Remove(1) == "C")
             {
                 Opacity = 0;
                 MessageBox.Show(" Вашу версию программы нельзя использовать на диске 'C'. Перенесите её на другой диск, или установите 'Standart Edition' версию.\n После нажатия кнопки 'Ок', будет открыта страница разработчика, попросите его помочь вам с этой проблемой.", " Al-Store", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -153,8 +158,6 @@ namespace Alu_Prog_9
                 else if (Convert.ToInt32(Properties.Settings.Default.Ver_Updater.Split('.')[3]) != 0)
                 { Properties.Settings.Default.Ver_Updater += ".Pre-Alpha"; }
             }
-
-            Properties.Settings.Default.Save();
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
@@ -218,7 +221,6 @@ namespace Alu_Prog_9
                     if (_result == MessageBoxResult.Yes)
                     {
                         Properties.Settings.Default.Start_Creating_Shortcut = 1;
-                        Properties.Settings.Default.Save();
                         My_Hand.Set_Properties("Start_Creating_Shortcut", Properties.Settings.Default.Start_Creating_Shortcut, out bool Result);
                         if (Result == true)
                         { }
@@ -237,7 +239,6 @@ namespace Alu_Prog_9
             else if (File.Exists("C:\\Users\\" + Properties.Settings.Default.User_Identyty + "\\Desktop\\Al-Store.lnk") && Properties.Settings.Default.First_Started == 0)
             {
                 Properties.Settings.Default.First_Started = 1;
-                Properties.Settings.Default.Save();
 
                 handler = new Handler();
                 handler.Create_Shortcut("Al-Store", "Al-Store", "", "Al-Store - Магазин приложений", Properties.Settings.Default.Ver_Store, "Ctrl+Shift+A");
@@ -273,6 +274,11 @@ namespace Alu_Prog_9
 
             await Task.Delay(10000);
             Environment.Exit(0);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
 
         private void Check_Loaded()

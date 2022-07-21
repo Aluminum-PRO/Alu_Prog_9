@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alu_Prog_9", "Alu_Prog_9\Alu_Prog_9.csproj", "{9D6516BB-C2F2-4187-B646-01FEF357CA75}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{21008ADF-48CB-4924-A3B9-6808A6374387}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup_Al_Store", "Setup_Al_Store\Setup_Al_Store.csproj", "{895B0116-9DD5-4A97-8CED-DD63562CFD0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto_Run_Al_Store", "Auto_Run_Al_Store\Auto_Run_Al_Store.csproj", "{A4CC7992-C038-465C-A7BE-F06C319A35AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{895B0116-9DD5-4A97-8CED-DD63562CFD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895B0116-9DD5-4A97-8CED-DD63562CFD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{895B0116-9DD5-4A97-8CED-DD63562CFD0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CC7992-C038-465C-A7BE-F06C319A35AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CC7992-C038-465C-A7BE-F06C319A35AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CC7992-C038-465C-A7BE-F06C319A35AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CC7992-C038-465C-A7BE-F06C319A35AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

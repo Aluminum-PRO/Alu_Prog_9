@@ -43,7 +43,6 @@ namespace Alu_Prog_9.Pages
                 Store_Frame.Content = new Store_News_Page();
                 Store_News_But.IsChecked = true;
                 Properties.Settings.Default.First_Started_after_Update = 1; 
-                Properties.Settings.Default.Save(); 
             }
             else
                 Store_Frame.Content = new Store_Home_Page();
