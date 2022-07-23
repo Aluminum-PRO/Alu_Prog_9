@@ -24,18 +24,18 @@ namespace Alu_Prog_9.User_Control
     {
         int id;
         double size;
-        string name, version, TPK_version, reference, TPK_reference;
+        string name, version, TPK_version, reference, TPK_reference, what_news, TPK_what_news;
 
-        public Update_Al_Store_But_UC(int id, string name, string version, string TPK_version, string reference, string TPK_reference, double size)
+        public Update_Al_Store_But_UC(int id, string name, string version, string TPK_version, string reference, string TPK_reference, string what_news, string TPK_what_news, double size)
         {
             InitializeComponent();
-            this.id = id; this.name = name; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.size = size;
+            this.id = id; this.name = name; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.what_news = what_news; this.TPK_what_news = TPK_what_news; this.size = size;
             Al_Store_But.Content = $"{name} | Ver.{version} | TPK Ver.{TPK_version}";
         }
 
         private void Al_Store_But_Click(object sender, RoutedEventArgs e)
         {
-            StaticVars.Store_Admin_Frame.NavigationService.Navigate(new Update_Al_Store_Page(id, name, version, TPK_version, reference, TPK_reference, size));
+            StaticVars.Store_Admin_Frame.NavigationService.Navigate(new Update_Al_Store_Page(id, name, version, TPK_version, reference, TPK_reference, what_news, TPK_what_news, size));
         }
     }
 }

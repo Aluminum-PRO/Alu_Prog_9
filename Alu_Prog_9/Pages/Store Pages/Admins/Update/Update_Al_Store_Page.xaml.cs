@@ -17,22 +17,23 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
 
         int id;
         double size;
-        string name, version, TPK_version, reference, TPK_reference;
+        string name, version, TPK_version, reference, TPK_reference, what_news, TPK_what_news;
 
-        public Update_Al_Store_Page(int id, string name, string version, string TPK_version, string reference, string TPK_reference, double size)
+        public Update_Al_Store_Page(int id, string name, string version, string TPK_version, string reference, string TPK_reference, string what_news, string TPK_what_news, double size)
         {
             InitializeComponent();
-            this.id = id; this.name = name; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.size = size;
+            this.id = id; this.name = name; this.version = version; this.TPK_version = TPK_version; this.reference = reference; this.TPK_reference = TPK_reference; this.what_news = what_news; this.TPK_what_news = TPK_what_news; this.size = size;
             Name_TextBox.Text = name;
             Version_TextBox.Text = version; TPK_Version_TextBox.Text = TPK_version;
             Reference_TextBox.Text = reference; TPK_Reference_TextBox.Text = TPK_reference;
+            What_News_TextBox.Text = what_news; TPK_What_News_TextBox.Text = TPK_what_news;
             Size_TextBox.Text = size.ToString();
         }
 
         private void Edit_But_Click(object sender, RoutedEventArgs e)
         {
             My_Con = new MySql_Connector();
-            command = new MySqlCommand("UPDATE `Tab_Al_Store_Db` SET `name` = @name, `size` = @size, `version` = @version, `TPK_version` = @TPK_version, `reference` = @reference, `TPK_reference` = @TPK_reference" +
+            command = new MySqlCommand("UPDATE `Tab_Al_Store_Db` SET `name` = @name, `size` = @size, `version` = @version, `TPK_version` = @TPK_version, `reference` = @reference, `TPK_reference` = @TPK_reference, `what_news` = @what_news, `TPK_what_news` = @TPK_what_news" +
                 " WHERE `id` = @id",
                 My_Con.getConnection());
 
@@ -43,6 +44,8 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
             command.Parameters.Add("@TPK_version", MySqlDbType.VarChar).Value = TPK_Version_TextBox.Text;
             command.Parameters.Add("@reference", MySqlDbType.VarChar).Value = Reference_TextBox.Text;
             command.Parameters.Add("@TPK_reference", MySqlDbType.VarChar).Value = TPK_Reference_TextBox.Text;
+            command.Parameters.Add("@what_news", MySqlDbType.VarChar).Value = What_News_TextBox.Text;
+            command.Parameters.Add("@TPK_what_news", MySqlDbType.VarChar).Value = TPK_What_News_TextBox.Text;
 
             My_Con.openConnection();
 

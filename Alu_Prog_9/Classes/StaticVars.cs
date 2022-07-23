@@ -25,7 +25,7 @@ namespace Alu_Prog_9.Classes
         //public static string ;
 
         public static int Count_Update, Count_Update_Al, Count_Soft, Gender = 0, Soft_License, Bot_License;
-        public static string Login, Rec_Email;
+        public static string Login, Rec_Email, what_news;
         public static bool Loading_Data = true, Logo_Animation = true;
 
         public static MainWindow MainWindow;

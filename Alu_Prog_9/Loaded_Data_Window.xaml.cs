@@ -161,8 +161,12 @@ namespace Alu_Prog_9
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
-            if (StaticVars.Count_Update_Al == 0)
+            if (StaticVars.Count_Update_Al == 0 && StaticVars.Auto_Update == 1)
+            {
                 AutoRun_Update = false;
+                Environment.Exit(0);
+            }
+                
 
             if (Properties.Settings.Default.Authorization == 1)
             {
@@ -291,7 +295,25 @@ namespace Alu_Prog_9
             Thread.Sleep(800);
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Telegram_Chating();
             Close();
+        }
+
+        private void Telegram_Chating()
+        {
+            Thread Telegram_Chating_thread = new Thread(() =>
+            {
+                Telegram_Chating_Window telegram_Chating_Window = new Telegram_Chating_Window();
+                telegram_Chating_Window.Show();
+
+                telegram_Chating_Window.Closed += (sender2, e2) =>
+                    telegram_Chating_Window.Dispatcher.InvokeShutdown();
+
+                System.Windows.Threading.Dispatcher.Run();
+            });
+
+            Telegram_Chating_thread.SetApartmentState(ApartmentState.STA);
+            Telegram_Chating_thread.Start();
         }
     }
 }

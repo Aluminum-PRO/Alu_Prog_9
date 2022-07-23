@@ -367,6 +367,9 @@
     <Compile Include="Services\Errors_Saves_and_Sending.cs" />
     <Compile Include="Services\Handler.cs" />
     <Compile Include="Services\Telegram_Bot_Send_Activity.cs" />
+    <Compile Include="Telegram_Chating_Window.xaml.cs">
+      <DependentUpon>Telegram_Chating_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Update_Al_Window.xaml.cs">
       <DependentUpon>Update_Al_Window.xaml</DependentUpon>
     </Compile>
@@ -384,6 +387,9 @@
     </Compile>
     <Compile Include="User_Control\Loading_Animation_UC.xaml.cs">
       <DependentUpon>Loading_Animation_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Control\Telegram_Messages_UC.xaml.cs">
+      <DependentUpon>Telegram_Messages_UC.xaml</DependentUpon>
     </Compile>
     <Compile Include="User_Control\Update_Al_Store_But_UC.xaml.cs">
       <DependentUpon>Update_Al_Store_But_UC.xaml</DependentUpon>
@@ -558,6 +564,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telegram_Chating_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\Menu_Button_Theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -583,6 +593,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Control\Loading_Animation_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Control\Telegram_Messages_UC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

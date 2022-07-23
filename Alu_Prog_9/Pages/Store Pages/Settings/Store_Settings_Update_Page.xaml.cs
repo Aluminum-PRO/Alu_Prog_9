@@ -53,7 +53,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
 
             if (Properties.Settings.Default.Ver_Store == Properties.Settings.Default.New_Ver_Store)
             {
-                Al_Update.Visibility = Visibility.Hidden;
+                Al_Update.Visibility = Visibility.Hidden; What_New_But.Visibility = Visibility.Hidden;
             }
             if (Properties.Settings.Default.Ver_Updater == Properties.Settings.Default.New_Ver_Updater)
             {
@@ -146,6 +146,11 @@ namespace Alu_Prog_9.Pages.Store_Pages.Settings
                 handler.SetAutorunValue(true);
             else if (Update_Msg_But.IsChecked == false)
                 handler.SetAutorunValue(false);
+        }
+
+        private void What_New_But_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(StaticVars.what_news, "Что нового в обновлении Al-Store", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

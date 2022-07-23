@@ -7,48 +7,65 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="770"
       Title="Update_Al_Store_Page">
+    <Viewbox Stretch="Uniform">
+        <Grid>
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="587*"/>
+                        <ColumnDefinition Width="213*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
+                        <StackPanel>
+                            <TextBlock Text="Название программы:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="10 0 0 0"/>
+                            <TextBox x:Name="Name_TextBox" Text="Al-Store" Foreground="White" FontSize="14" FontFamily="/Fonts/#Poppins" Margin="20 0 20 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10" Grid.Column="1">
+                        <StackPanel>
+                            <TextBlock Text="Вес программы:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
+                            <TextBox x:Name="Size_TextBox" Text="0.1 МБ" Foreground="White" FontSize="14" FontFamily="/Fonts/#Poppins" Margin="20 0 20 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
 
-    <Grid>
-        <StackPanel>
-            <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
-                <StackPanel>
-                    <TextBlock Text="Название программы:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="10 0 0 0"/>
-                    <TextBox x:Name="Name_TextBox" Text="Al-Store" Foreground="White" FontSize="18" FontFamily="/Fonts/#Poppins" Margin="20 0 20 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Standart Edition:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="110 0 0 0"/>
+                    <TextBlock Text="TPK Edition:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="190 00 0 0"/>
                 </StackPanel>
-            </Border>
-            <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
-                <StackPanel>
-                    <TextBlock Text="Вес программы:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
-                    <TextBox x:Name="Size_TextBox" Text="0.1 МБ" Foreground="White" FontSize="18" FontFamily="/Fonts/#Poppins" Margin="20 0 20 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>    
-                </StackPanel>
-            </Border>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Standart Edition:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="110 0 0 0"/>
-                <TextBlock Text="TPK Edition:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="190 00 0 0"/>
-            </StackPanel>
-            <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
-                <StackPanel>
-                    <TextBlock Text="Версия программы:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="Version_TextBox" Text="0.0.0.0.Pre-Alpha" Foreground="White" FontSize="18" FontFamily="/Fonts/#Poppins" Margin="120 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <TextBox x:Name="TPK_Version_TextBox" Text="0.0.0.0.Pre-Alpha" Foreground="White" FontSize="18" FontFamily="/Fonts/#Poppins" Margin="205 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
+                    <StackPanel>
+                        <TextBlock Text="Версия программы:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="Version_TextBox" Text="0.0.0.0.Pre-Alpha" Foreground="White" FontSize="14" FontFamily="/Fonts/#Poppins" Margin="120 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox x:Name="TPK_Version_TextBox" Text="0.0.0.0.Pre-Alpha" Foreground="White" FontSize="14" FontFamily="/Fonts/#Poppins" Margin="205 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
-                <StackPanel>
-                    <TextBlock Text="Ссылка на программу:" Foreground="White" FontSize="24" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="Reference_TextBox" Text="https://disk.yandex.ru/d/HWNhUgep-H7QkQ" Foreground="White" FontSize="12" FontFamily="/Fonts/#Poppins" Margin="80 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <TextBox x:Name="TPK_Reference_TextBox" Text="https://disk.yandex.ru/d/OF9KjW-tIOzPrQ" Foreground="White" FontSize="12" FontFamily="/Fonts/#Poppins" Margin="90 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                </Border>
+                <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
+                    <StackPanel>
+                        <TextBlock Text="Ссылка на программу:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="10 10 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="Reference_TextBox" Text="https://disk.yandex.ru/d/HWNhUgep-H7QkQ" Foreground="White" FontSize="12" FontFamily="/Fonts/#Poppins" Margin="80 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox x:Name="TPK_Reference_TextBox" Text="https://disk.yandex.ru/d/OF9KjW-tIOzPrQ" Foreground="White" FontSize="12" FontFamily="/Fonts/#Poppins" Margin="90 0 0 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </Border>
-            
+                </Border>
+                <Border Background="Transparent" BorderThickness="0.8" BorderBrush="Gray" CornerRadius="6" Margin="10 10">
+                    <StackPanel>
+                        <TextBlock Text="Что нового:" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Margin="10 0 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="What_News_TextBox" Height="135" Width="350" Text="Что нового" Foreground="White" FontFamily="/Fonts/#Poppins" FontSize="10" Margin="10 0 0 0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
+                            <TextBox x:Name="TPK_What_News_TextBox" Height="135" Width="350" Text="Что нового" Foreground="White" FontFamily="/Fonts/#Poppins" FontSize="10" Margin="20 0 0 0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5 0 20 0">
                     <Button x:Name="Cancel_But" Content="Отменить" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 10 0" Click="Cancel_But_Click"/>
                     <Button x:Name="Edit_But" Content="Изменить" Style="{StaticResource MaterialDesignFlatButton}" Click="Edit_But_Click"/>
                 </StackPanel>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
 </Page>

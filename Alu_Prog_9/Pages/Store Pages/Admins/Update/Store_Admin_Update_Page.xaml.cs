@@ -19,7 +19,7 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
         private MySqlDataReader reader;
         private int id;
         private double size, price;
-        private string type, name, program_name, version, TPK_version, reference, TPK_reference, description, shortcut_description, hot_key;
+        private string type, name, program_name, version, TPK_version, reference, TPK_reference, what_news, TPK_what_news, description, shortcut_description, hot_key;
         private BitmapImage image, image_1, image_2, image_3, image_4;
 
         public Store_Admin_Update_Page()
@@ -48,10 +48,12 @@ namespace Alu_Prog_9.Pages.Store_Pages.Admins.Update
                 reference = reader["reference"].ToString().Replace("https://getfile.dokpub.com/yandex/get/", "");
                 TPK_version = reader["TPK_version"].ToString();
                 TPK_reference = reader["TPK_reference"].ToString().Replace("https://getfile.dokpub.com/yandex/get/", "");
+                what_news = reader["what_news"].ToString();
+                TPK_what_news = reader["TPK_what_news"].ToString();
                 size = Convert.ToDouble(reader["size"]);
                 if (reader["id"].ToString() == "2" || reader["id"].ToString() == "3")
                 {
-                    Update_Al_Store_But_UC update_Al_Store_But_UC = new Update_Al_Store_But_UC(id, name, version, TPK_version, reference, TPK_reference, size);
+                    Update_Al_Store_But_UC update_Al_Store_But_UC = new Update_Al_Store_But_UC(id, name, version, TPK_version, reference, TPK_reference, what_news, TPK_what_news, size);
                     Al_Store_StackPanel.Children.Add(update_Al_Store_But_UC);
                 }
             }

@@ -120,10 +120,12 @@ namespace Alu_Prog_9.MySql_Services
                     if (Properties.Settings.Default.Edition == "'Standart'")
                     {
                         Properties.Settings.Default.New_Ver_Store = reader["version"].ToString();
+                        StaticVars.what_news = reader["what_news"].ToString();
                     }
                     else if (Properties.Settings.Default.Edition == "'TPK'")
                     {
                         Properties.Settings.Default.New_Ver_Store = reader["TPK_version"].ToString();
+                        StaticVars.what_news = reader["TPK_what_news"].ToString();
                     }
                 }
             }

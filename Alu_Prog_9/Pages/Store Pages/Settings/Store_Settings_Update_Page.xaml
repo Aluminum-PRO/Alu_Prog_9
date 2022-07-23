@@ -14,13 +14,14 @@
             <StackPanel>
                 <TextBlock Text="Окно обновления Al-Store:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Width="200" Height="22" Margin="5,5,0,5" TextAlignment="Left"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Al-Store:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="30 5 2 5" TextAlignment="Left" />
+                    <TextBlock Text="Al-Store:" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="30 7 2 5" TextAlignment="Left" />
                     <Border>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
                         </Border.Effect>
-                        <TextBlock Text="Требуется обновление" x:Name="Al_Update" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="10 5 2 5"/>
+                        <TextBlock Text="Требуется обновление" x:Name="Al_Update" HorizontalAlignment="Left" FontSize="12" Foreground="White" Margin="10 6 2 5"/>
                     </Border>
+                    <Button Content="Что нового в обновлении?" x:Name="What_New_But" Height="25" FontSize="10" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Click="What_New_But_Click" Cursor="Hand"/>
                 </StackPanel>
                 <Border Background="Transparent" CornerRadius="8" BorderThickness="0.8" BorderBrush="Gray" Margin="2 0 2 8" Padding="0">
                     <StackPanel>
