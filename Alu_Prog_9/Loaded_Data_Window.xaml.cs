@@ -161,7 +161,7 @@ namespace Alu_Prog_9
 
             My_Hand = new MySql_Handler();
             My_Hand.Getting_Data();
-            if (StaticVars.Count_Update_Al == 0 && StaticVars.Auto_Update == 1)
+            if (StaticVars.Count_Update_Al == 0 && AutoRun_Update)
             {
                 AutoRun_Update = false;
                 Environment.Exit(0);
