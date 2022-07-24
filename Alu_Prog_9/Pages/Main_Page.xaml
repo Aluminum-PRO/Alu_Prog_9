@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Alu_Prog_9.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1130"
-      Title="Main_Page">
+      Title="Main_Page" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>

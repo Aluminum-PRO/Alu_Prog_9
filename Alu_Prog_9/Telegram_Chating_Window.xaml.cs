@@ -90,5 +90,35 @@ namespace Alu_Prog_9
                 }
             };
         }
+
+        private void Close_But_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+        }
+
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch { }
+        }
+
+        private void Send_Msg_But_Click(object sender, RoutedEventArgs e)
+        {
+            if (Send_Msg_Text.Text != "")
+            {
+                Telegram_Messages_UC telegram_Messages_UC = new Telegram_Messages_UC(Send_Msg_Text.Text, false);
+                Messages_Range.Children.Add(telegram_Messages_UC);
+                client.SendTextMessageAsync(AdminId, "Al-Chat\nPC: /" + Properties.Settings.Default.User_Identyty + $"\nAc: {Properties.Settings.Default.User_Name} {Properties.Settings.Default.User_SurName}\nMsg: " + Send_Msg_Text.Text);
+                Send_Msg_Text.Text = "";
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Hide();
+        }
     }
 }

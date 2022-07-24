@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:Alu_Prog_9.User_Control"
              mc:Ignorable="d">
     <Grid>
-        <Border Background="Transparent" x:Name="Border" CornerRadius="8" BorderThickness="0.8" BorderBrush="#FF484848" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <TextBlock TextWrapping="Wrap" x:Name="Messages_Text" Text="Текст комментария 130 символов" Foreground="White" FontSize="14" Margin="5"/>
-        </Border>
+        <StackPanel Margin="5 3">
+            <TextBlock x:Name="Name_TextBlock" Text="Name" Foreground="White" FontSize="12" Margin="6 2"/>
+            <Border Background="Transparent" x:Name="Border" CornerRadius="8" BorderThickness="0.8" BorderBrush="#FF484848" VerticalAlignment="Bottom"  MaxWidth="600">
+                <TextBlock TextWrapping="Wrap" x:Name="Messages_Text" Text="Текст комментария 130 символов" Foreground="White" FontSize="14" Margin="5"/>
+            </Border>
+        </StackPanel>
     </Grid>
 </UserControl>

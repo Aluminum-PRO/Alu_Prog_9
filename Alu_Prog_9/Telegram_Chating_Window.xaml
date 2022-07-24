@@ -6,20 +6,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Alu_Prog_9"
         mc:Ignorable="d"
-        Title="Telegram Chating" Height="450" Width="800" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowState="Minimized" Background="Transparent" ResizeMode="CanResizeWithGrip" AllowsTransparency="False">
+        Title="Telegram Chating" Height="450" Width="800" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Background="Transparent" ResizeMode="NoResize" AllowsTransparency="False" Topmost="True" Loaded="Window_Loaded">
     <Border x:Name="Main_Border" CornerRadius="0" Background="#272537" BorderBrush="Gray" BorderThickness="0.4">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
-                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <ScrollViewer Margin="0 5" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.Column="1">
-                <StackPanel Orientation="Vertical" Name="Messages_Range" Height="auto" MaxHeight="360"/>
+            <Border Height="40" VerticalAlignment="Top" MouseDown="Border_MouseDown" Background="Transparent"/>
+            <Button x:Name="Close_But" 
+                        Height="30" Width="30" 
+                        Margin="8 2" HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="Close_But_Click" Cursor="Hand">
+                <Button.RenderTransform>
+                    <ScaleTransform x:Name="Animated_Close_But"/>
+                </Button.RenderTransform>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                Storyboard.TargetName="Animated_Close_But"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                To="1.2" Duration="0:0:0.03"/>
+                                <DoubleAnimation
+                Storyboard.TargetName="Animated_Close_But"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                To="1.2" Duration="0:0:0.03"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Button.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                Storyboard.TargetName="Animated_Close_But"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                To="1.0" Duration="0:0:0.03"/>
+                                <DoubleAnimation
+                Storyboard.TargetName="Animated_Close_But"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                To="1.0" Duration="0:0:0.03"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/Buttons/Закрыть.png"/>
+                </Button.Background>
+            </Button>
+            <ScrollViewer Margin="0 5" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.Row="1" MaxHeight="320" Width="800">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Name="Messages_Range" Width="800"/>
             </ScrollViewer>
-            <Border Background="Transparent" CornerRadius="8" BorderThickness="0.8" BorderBrush="Gray" Margin="10 5 2 4" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
-                    <TextBox materialDesign:HintAssist.Hint="   Напишите сообщение..." TextWrapping="Wrap" x:Name="Send_Comment_Text" Foreground="White" FontSize="14" Grid.Column="1" Margin="5" Width="670" VerticalScrollBarVisibility="Auto" Cursor="IBeam"/>
+            <Border Background="Transparent" CornerRadius="8" BorderThickness="0.8" BorderBrush="Gray" Margin="10 5 2 4" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <TextBox materialDesign:HintAssist.Hint="   Напишите сообщение..." TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="80" x:Name="Send_Msg_Text" Foreground="White" FontSize="14" Margin="5" Width="670" VerticalScrollBarVisibility="Auto" Cursor="IBeam"/>
             </Border>
-            <Button Content="Отправить" x:Name="Send_Comment_But" FontSize="14" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Grid.Row="1"/>
+            <Button Content="Отправить" x:Name="Send_Msg_But" FontSize="14" Margin="2 0 2 9" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Click="Send_Msg_But_Click"/>
         </Grid>
     </Border>
 </Window>

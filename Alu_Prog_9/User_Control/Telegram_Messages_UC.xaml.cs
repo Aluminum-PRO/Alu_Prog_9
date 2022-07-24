@@ -14,9 +14,9 @@ namespace Alu_Prog_9.User_Control
 
             Messages_Text.Text = msg;
             if (Admin)
-            { Border.HorizontalAlignment = HorizontalAlignment.Left; }
+            { Border.HorizontalAlignment = HorizontalAlignment.Left; Name_TextBlock.HorizontalAlignment = HorizontalAlignment.Left; Name_TextBlock.Text = "Никита (Admin)"; }
             else if (!Admin)
-            { Border.HorizontalAlignment = HorizontalAlignment.Right; }
+            { Border.HorizontalAlignment = HorizontalAlignment.Right; Name_TextBlock.HorizontalAlignment = HorizontalAlignment.Right; Name_TextBlock.Text = $"{Properties.Settings.Default.User_Name} ({Properties.Settings.Default.User_Role})"; }
         }
     }
 }

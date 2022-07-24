@@ -9,6 +9,7 @@ using Alu_Prog_9.Pages.Store_Pages.News;
 using Alu_Prog_9.Pages.Store_Pages.Settings;
 using Alu_Prog_9.Pages.Store_Pages.Softs_Pages;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -170,6 +171,28 @@ namespace Alu_Prog_9.Pages
                 Store_Frame.NavigationService.RemoveBackEntry();
             }
             Store_Frame.NavigationService.RemoveBackEntry();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Telegram_Chating();
+        }
+
+        private void Telegram_Chating()
+        {
+            Thread Telegram_Chating_thread = new Thread(() =>
+            {
+                Telegram_Chating_Window telegram_Chating_Window = new Telegram_Chating_Window();
+                telegram_Chating_Window.Show();
+
+                telegram_Chating_Window.Closed += (sender2, e2) =>
+                    telegram_Chating_Window.Dispatcher.InvokeShutdown();
+
+                System.Windows.Threading.Dispatcher.Run();
+            });
+
+            Telegram_Chating_thread.SetApartmentState(ApartmentState.STA);
+            Telegram_Chating_thread.Start();
         }
     }
 }

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Avto_Run_Al_Store.MySql_Services;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using forms = System.Windows.Forms;
 
 namespace Auto_Run_Al_Store
 {
@@ -22,13 +13,14 @@ namespace Auto_Run_Al_Store
     /// </summary>
     public partial class MainWindow : Window
     {
-        string Source = "";
+        private MySql_Handler my_Handler;
+        private string Source = "";
         public MainWindow()
         {
             InitializeComponent();
-            
+
             string source = Assembly.GetExecutingAssembly().Location;
-            int counts = source.Count(f => f == '\\'); counts--;
+            int counts = source.Count(f => f == '\\'); counts -= 2;
             for (int i = 1; i <= counts; i++)
             {
                 if (i != counts)
@@ -45,12 +37,19 @@ namespace Auto_Run_Al_Store
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Process process = Process.Start(new ProcessStartInfo
+            my_Handler = new MySql_Handler();
+            my_Handler.Getting_Update_Data(Source);
+
+            try
             {
-                FileName = Source,
-                Arguments = "/AutoRun_Update"
-                //Arguments = "/Hi"
-            });
+                Process process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = Source += "\\Al-Store\\Al-Store.exe",
+                    //Arguments = "/Hi"
+                    Arguments = "/AutoRun_Update"
+                });
+            }
+            catch (Exception Ex) { MessageBox.Show("    Авто обновление Al-Store не запущено по причине ниже. Если вам мешает окно подтверждения, вы можете отключить функцию автообновления и уведомдения об обновлении в настройках обновления Al-Store.\n\n    Причина: " + Ex.Message, "Auto Update Al-Store", MessageBoxButton.OK, MessageBoxImage.Error); }
             Close();
         }
     }

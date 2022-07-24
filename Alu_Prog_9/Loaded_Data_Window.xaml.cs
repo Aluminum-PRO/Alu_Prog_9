@@ -40,7 +40,7 @@ namespace Alu_Prog_9
                 {
                     if (element == "/Hi")
                     {
-                        MessageBox.Show("Hi, Admin!", "Al-Store", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Hi, Admin!", "Al-Store", MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
                         Environment.Exit(0);
                     }
                     if (element == "/AutoRun_Update")
@@ -295,25 +295,7 @@ namespace Alu_Prog_9
             Thread.Sleep(800);
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            Telegram_Chating();
             Close();
-        }
-
-        private void Telegram_Chating()
-        {
-            Thread Telegram_Chating_thread = new Thread(() =>
-            {
-                Telegram_Chating_Window telegram_Chating_Window = new Telegram_Chating_Window();
-                telegram_Chating_Window.Show();
-
-                telegram_Chating_Window.Closed += (sender2, e2) =>
-                    telegram_Chating_Window.Dispatcher.InvokeShutdown();
-
-                System.Windows.Threading.Dispatcher.Run();
-            });
-
-            Telegram_Chating_thread.SetApartmentState(ApartmentState.STA);
-            Telegram_Chating_thread.Start();
         }
     }
 }

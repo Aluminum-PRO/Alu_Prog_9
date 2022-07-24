@@ -72,23 +72,24 @@ namespace Alu_Prog_9.MySql_Services
 
             if (Tab_Accounts_Db.Rows.Count > 0)
             {
-                Tab_Programs_Db = new DataTable();
-                adapter = new MySqlDataAdapter();
+                Properties.Settings.Default.Authorization = 1; Restoring_Authorization_Bool = "True";
+                //Tab_Programs_Db = new DataTable();
+                //adapter = new MySqlDataAdapter();
 
-                command = new MySqlCommand("SELECT * FROM `Tab_Programs_Db` WHERE `login` = @login AND `The_15_Puzzle` = 1", My_Con.getConnection()); //TODO: Что это тут делает `The_15_Puzzle`
-                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
+                //command = new MySqlCommand("SELECT * FROM `Tab_Programs_Db` WHERE `login` = @login AND `The_15_Puzzle` = 1", My_Con.getConnection()); //TODO: Что это тут делает `The_15_Puzzle` (убрал вроде)
+                //command.Parameters.Add("@login", MySqlDbType.VarChar).Value = Properties.Settings.Default.User_Login;
 
-                adapter.SelectCommand = command;
-                adapter.Fill(Tab_Programs_Db);
+                //adapter.SelectCommand = command;
+                //adapter.Fill(Tab_Programs_Db);
 
-                if (Tab_Programs_Db.Rows.Count > 0)
-                {
-                    Properties.Settings.Default.Authorization = 1; Restoring_Authorization_Bool = "True";
-                }
-                else
-                {
-                    Restoring_Authorization_Bool = "False";
-                }
+                //if (Tab_Programs_Db.Rows.Count > 0)
+                //{
+                //    Properties.Settings.Default.Authorization = 1; Restoring_Authorization_Bool = "True";
+                //}
+                //else
+                //{
+                //    Restoring_Authorization_Bool = "False";
+                //}
             }
             else
             {
